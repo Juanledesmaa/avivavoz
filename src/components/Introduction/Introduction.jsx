@@ -28,35 +28,29 @@ const Introduction = () => (
                             <Row>
                                 {/* Column 1 */}
                                 <Col xs={12} md={12} lg={6} xl={4}>
-                                    <h4 className="title"></h4>
                                     <h4 className="sub-title">Sesiones individuales</h4>
                                 </Col>
 
                                 {/* Column 2 */}
                                 <Col xs={12} md={12} lg={6} xl={4}>
-                                    <h4 className="title"></h4>
                                     <h4 className="sub-title">Talleres grupales</h4>
                                 </Col>
 
                                 {/* Column 3 */}
                                 <Col xs={12} md={12} lg={6} xl={4}>
-                                    <h4 className="title"></h4>
                                     <h4 className="sub-title">Técnicas de Oratoria</h4>
                                 </Col>
 
                                 {/* Column 4 */}
                                 <Col xs={12} md={12} lg={6} xl={12}>
-                                    <h4 className="title"></h4>
                                     <h4 className="sub-title">Preparación para audiciones</h4>
                                 </Col>
                                 {/* Column 5 */}
                                 <Col xs={12} md={12} lg={6} xl={12}>
-                                    <h4 className="title"></h4>
                                     <h4 className="sub-title">Preparación para presentaciones musicales.</h4>
                                 </Col>
                                 {/* Column 6 */}
                                 <Col xs={12} md={12} lg={6} xl={12}>
-                                    <h4 className="title"></h4>
                                     <h4 className="sub-title">Preparación para conferencistas.</h4>
                                 </Col>
                             </Row>
