@@ -1,8 +1,10 @@
 import React from "react";
 import { Parallax } from 'react-parallax';
+import { Row, Col, Button } from 'react-bootstrap';
 //include images into your bundle
 import './IntroductionV2.scss';
 import background from "../../img/parallax_red.jpg";
+import samplePDF from '../../img/Temas_Talleres.pdf';
 
 //create your first component
 const IntroductionV2 = () => (
@@ -12,7 +14,7 @@ const IntroductionV2 = () => (
                 <div class="responsive-container-block bigContainer">
                     <div class="responsive-container-block Container bottomContainer">
                         <div class="allText bottomText">
-                        <div className='col-md-12 section-title'>
+                            <div className='col-md-12 section-title'>
                                 <h2>Sesiones grupales</h2>
                             </div>
 
@@ -22,17 +24,32 @@ const IntroductionV2 = () => (
                                 <h2>Sesiones Individuales:</h2>
                             </div>
                             <h4 class="text-blk description">Coaching: entrenamiento individual durante montaje de repertorio. Este tipo de servicio suele solicitarse con el propósito de una meta específica para una presentación musical o compromiso en audiciones vocales.
-Duración mínima 1 hora por sesión
-Sesiones presenciales/Sesiones online a disponibilidad
+                                Duración mínima 1 hora por sesión
+                                Sesiones presenciales/Sesiones online a disponibilidad
                             </h4>
 
 
                             <h2 className="date-text mb-4">Técnica vocal</h2>
                             <h4 class="text-blk description">Para el desarrollo del arte del canto. Este tipo de servicio suele solicitarse con el interés de aprender a cantar y a dirigirse en público.
-Duración 30 minutos o 1 hora. Esto dependerá de edad y nivel del estudiante.
-Sesiones presenciales/Sesiones online a disponibilidad
+                                Duración 30 minutos o 1 hora. Esto dependerá de edad y nivel del estudiante.
+                                Sesiones presenciales/Sesiones online a disponibilidad
                             </h4>
 
+                            <div className="pdf-div">
+                                <h2 className="date-text mb-4">Descarga toda la informacion acerca de nuestros talleres y sesiones.</h2>
+
+                                <div className="pdf-container">
+                                    <div className="button-container">
+                                        <Row className="justify-content-center">
+                                            <Col xs={10} sm={12} lg={12} xl={12} className="text-center">
+                                                <Button variant="primary" size="sm" block className="d-flex align-items-center justify-content-center">
+                                                    <a href={samplePDF} download>Descargar PDF</a>
+                                                </Button>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

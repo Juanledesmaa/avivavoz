@@ -38,7 +38,7 @@
 
         .button-container {
             position: absolute;
-            bottom: 40px;
+            bottom: 20px;
             width: 100% !important;
 
             .btn {
@@ -79,8 +79,8 @@
 
         .title-container {
             position: absolute;
-            bottom: 120px;
-            width: 100% !important;
+            bottom: 80px;
+            padding: 0 30%;
 
             .title-image {
                 display: flex;
@@ -97,6 +97,10 @@
     }
 
     @media (max-width: 768px) {
+
+        .title-container {
+            padding: 0 !important;
+        }
         .video-mobile {
             display: block;
             max-height: 450px;
