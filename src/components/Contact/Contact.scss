@@ -1,0 +1,55 @@
+@import '../../styles/imports';
+
+.contact {
+    .content-contact {
+
+        h2 {
+            position: relative;
+
+            // Style the first word (Traeme)
+            span.first-word {
+                color: $secondary-color; /* Set primary color for the first word */
+            }
+
+            // Style the last word (Taxi)
+            span.last-word {
+                color: $primary-color; /* Set secondary color for the last word */
+            }
+        }
+
+        .content-box {
+            background-color: $white; /* White background */
+            margin:  120px 20px; /* Centering with 20px margin on top and bottom */
+            padding: 20px; /* Padding inside the container */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Box shadow for a subtle effect */
+            max-width: 100%; /* Ensures container does not exceed viewport width */
+
+            form {
+                text-align: left;
+            }
+
+            .button-container {
+                text-align: center;
+                .btn {
+                    background-color: $primary-color;
+                    border-color: $primary-color;
+                }
+            }
+        }
+
+        .items-left {
+            text-align: left;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+
+            p {
+                font-size: 20px;
+            }
+        }
+
+    }
+
+}
