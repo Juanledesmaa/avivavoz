@@ -12,7 +12,7 @@ const Contact = () => (
                 <Row className="justify-content-center">
                     <Col xs={12} sm={12} md={8} lg={8}>
                         <div className="content-box">
-                            <h2><span className="first-word">📬 CONTÁCTANOS</span> <span className="last-word"><br></br>¡Queremos informarte!</span></h2>
+                            <h2><span className="first-word">📬 CONTÁCTANOS para brindarte</span> <span className="last-word"><br></br>estimado de nuestros servicios</span></h2>
                             <div className="flex flex-col items-left space-y-2">
                                 <p>
                                     <i className="fas fa-phone-alt text-red-600 mr-2"></i>

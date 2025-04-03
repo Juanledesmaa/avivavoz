@@ -1,11 +1,36 @@
 @import '../../styles/imports';
 
 .introduction {
+
+    .includes {
+        .text-blk.description {
+            margin-bottom: 10px !important;
+        }
+
+        .text-blk.description {
+            text-align: left;
+        }
+
+        li {
+            font-weight: 300;
+            font-size: 30px;
+            color: #868686;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        a {
+            font-size: 24px;
+        }
+    }
+
     .pdf-container {
         display: flex;
-        justify-content: center; /* Center horizontally */
-        align-items: center;     /* Center vertically */
-        height: 100%; 
+        justify-content: center;
+        /* Center horizontally */
+        align-items: center;
+        /* Center vertically */
+        height: 100%;
 
         .button-container {
             width: 100% !important;
@@ -65,12 +90,14 @@
 
                 // Style the first word (Traeme)
                 span.first-word {
-                    color: $secondary-color; /* Set primary color for the first word */
+                    color: $secondary-color;
+                    /* Set primary color for the first word */
                 }
 
                 // Style the last word (Taxi)
                 span.last-word {
-                    color: $primary-color; /* Set secondary color for the last word */
+                    color: $primary-color;
+                    /* Set secondary color for the last word */
 
                     &.smaller {
                         font-size: 28px;
@@ -209,7 +236,6 @@
             font-size: 18px;
             line-height: 28px;
             color: $primary-color;
-            text-align: justify !important;
             padding-top: 0px;
             padding-right: 10px;
             padding-bottom: 0px;
