@@ -106,7 +106,7 @@ const Introduction = () => (
                                             <li>• Comprendiendo los cambios en la voz según la edad</li>
                                         </ul>
                                         <h4 class="text-blk description">Desarrollo y practica en temas dirigido a niños como:</h4>
-                                        <ul>
+                                        <ul className="text-align-left">
                                             <li>• Enseñar a los niños a cómo cuidar y manejar su voz desde la infancia para no lastimarse a modo preventivo.</li>
                                             <li>• Promover autoestima y autoconfianza.</li>
                                             <li>• Fortalecer la comunicación y el nivel de atención desde edad temprana.</li>
@@ -125,9 +125,7 @@ const Introduction = () => (
 
                             </div>
 
-                            <h2 className="date-text mb-4 mt-4">Descarga nuestras políticas de servicio.</h2>
-
-                            <h4 class="text-blk description">Nuestro programa <strong>A Viva Voz Coaching Kids</strong> es una experiencia grupal clasificada como taller educativo de 5 horas diseñado para niños de 8 a 11 años. Se producen espacios con información y practica en un ambiente divertido, seguro e interactivo. Los niños aprenden a usar su voz de manera saludable mientras desarrollan habilidades escénicas, mediante las destrezas del canto y la oratoria.</h4>
+                            <h2 className="date-text mb-2 mt-4">Descarga nuestras políticas de servicio.</h2>
 
                             <div className="pdf-container">
                                 <div className="button-container">
