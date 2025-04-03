@@ -1,0 +1,30 @@
+@import '../../styles/imports';
+
+.MarqueeBanner {
+    position: absolute !important;
+    width: 100% !important;
+    background-color: rgba(255, 255, 255, 0.7);
+    font-size: 28px;
+    margin-bottom: 50px;
+
+    h2 {
+        color: $primary-color;
+        font-weight: normal;
+        margin: 14px;
+        font-size: 24px;
+
+        @media (min-width: 1440px) {
+            font-size: 36px;
+            margin: 20px;
+          }
+
+        .red {
+            color: #FF3B3F;
+            margin-right: 20px;
+        }
+
+        .bolder {
+            font-weight: bold;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+@import '../../styles/imports';
+
+.footer {
+    background-color: $primary-color;
+
+    img {
+        height: 50px;
+        object-fit: cover;
+    }
+
+    .color-white {
+        color: white !important;
+    }
+}

@@ -1,0 +1,120 @@
+@import '../../styles/imports';
+
+.banner {
+
+    @keyframes slideInFromTop {
+        0% {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+    section {
+        overflow: hidden;
+        position: relative;
+
+
+        .shadow-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; // Adjust height to control the size of the shadow
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+            pointer-events: none; // Allow clicks to pass through to the banner
+        }
+
+        .bg-banner {
+            max-width: 100%;
+            width: 100%;
+            object-fit: cover;
+            z-index: -1;
+            object-position: top;
+        }
+
+        .button-container {
+            position: absolute;
+            bottom: 40px;
+            width: 100% !important;
+
+            .btn {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+                border-color: transparent;
+                background-color: $primary-color;
+                font-size: 24px;
+                text-transform: uppercase;
+                font-weight: bold;
+                line-height: 0.95;
+                padding-top: 10px;
+                padding-bottom: 10px;
+
+                h3 {
+                    margin: 0 !important;
+                    color: $white;
+                }
+
+                &.whatsapp {
+                    background-color: $whatsapp-green;
+                }
+
+                .svg-inline--fa {
+                    margin-right: 3px;
+                    font-size: 18px;
+                }
+            }
+
+            .smaller {
+                color: $secondary-color;
+                font-size: smaller;
+            }
+        }
+
+        .title-container {
+            position: absolute;
+            bottom: 120px;
+            width: 100% !important;
+
+            .title-image {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                animation: slideInFromTop 2s ease-in-out forwards;
+            }
+
+            .title-image.loaded {
+                opacity: 1;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .video-mobile {
+            display: block;
+            max-height: 450px;
+        }
+
+        .video-desktop {
+            display: none;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .video-mobile {
+            display: none;
+        }
+
+        .video-desktop {
+            display: block;
+            max-height: 850px;
+        }
+    }
+}
