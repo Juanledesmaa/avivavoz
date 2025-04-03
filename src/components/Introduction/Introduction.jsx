@@ -18,9 +18,6 @@ const Introduction = () => (
                             <div className='col-md-12 section-title'>
                                 <h2>SERVICIOS</h2>
                             </div>
-                            <h2 className="date-text mb-4">Educación Vocal Integral</h2>
-                            <h4 class="text-blk description">Nuestros talleres grupales y sesiones individuales están diseñados para todo tipo de estudiante: desde quienes dan sus primeros pasos hasta artistas profesionales. La duración es flexible según las necesidades del cliente, desde sesiones cortas hasta programas de meses en la comodidad del lugar que el cliente coordine para realizar la enseñanza.
-                            </h4>
 
                             <div className='col-md-12 section-title'>
                                 <h2><span className="last-word smaller">Modalidades presenciales o virtuales:</span></h2>
@@ -59,27 +56,6 @@ const Introduction = () => (
                             </div>
                             <h2 className="date-text gold mb-4">Entrenando Voces desde la Niñez</h2>
                             <h4 class="text-blk description">Nuestro programa <strong>A Viva Voz Coaching Kids</strong> es una experiencia grupal clasificada como taller educativo de 5 horas diseñado para niños de 8 a 11 años. Se producen espacios con información y practica en un ambiente divertido, seguro e interactivo. Los niños aprenden a usar su voz de manera saludable mientras desarrollan habilidades escénicas, mediante las destrezas del canto y la oratoria.</h4>
-
-                            <h2 className="date-text gold mb-4">Proximos Eventos</h2>
-                            <h3 className="date-text mb-4">A Viva Voz Coaching Kids</h3>
-
-                            <Row className="align-items-center">
-                                {/* Column 1 */}
-                                <Col xs={{ span: 10, offset: 1 }}
-                                    md={{ span: 10, offset: 1 }}
-                                    lg={{ span: 10, offset: 1 }}
-                                    xl={{ span: 10, offset: 1 }}>
-                                    <h4 className="sub-title">• 28 de junio de 2025 (Utuado) Calvario Church Utuado Campus</h4>
-                                </Col>
-
-                                <Col xs={{ span: 10, offset: 1 }}
-                                    md={{ span: 10, offset: 1 }}
-                                    lg={{ span: 10, offset: 1 }}
-                                    xl={{ span: 10, offset: 1 }}>
-                                    <h4 className="sub-title">• 30 de agosto 2025 (Hato Rey) Iglesia Sendero de la Cruz
-                                    </h4>
-                                </Col>
-                            </Row>
 
                             <h3 className="date-text mb-4">Eventos A Viva Voz Coaching Kids pueden incluir:
                             </h3>
