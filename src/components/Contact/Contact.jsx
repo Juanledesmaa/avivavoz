@@ -21,7 +21,9 @@ const Contact = () => (
                                 <p>
                                     <i className="fas fa-envelope text-red-600 mr-2"></i>
                                     <strong>Correo electrónico:</strong>{" "}
-                                    <a href="mailto:avivavozcanta@gmail.com">avivavozcanta@gmail.com</a>
+                                    {/* <a href="mailto:avivavozcanta@gmail.com">avivavozcanta@gmail.com</a> */}
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=avivavozcanta@gmail.com&su=Consulta para servicios&body=Hola, me contactaba por ustedes de este medio para pedir un estimado de sus servicios." target="_blank" rel="noopener noreferrer">avivavozcanta@gmail.com</a>
+                                    
                                 </p>
                                 <p>
                                     <i className="fab fa-facebook text-blue-600 mr-2"></i>
