@@ -12,23 +12,27 @@
       font-family: 'Brutal Type', sans-serif;
       font-size: 2.5rem;
       font-weight: 800;
-      margin-bottom: 2rem;
-      line-height: 1.3;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      text-align: center;
       
       .first-word {
         color: white;
         font-size: 0.8em;
+        line-height: 1.1;
       }
       
       .second-word {
         color: $secondary-color;
         font-size: 1.1em;
+        line-height: 1.1;
       }
       
       .third-word {
         color: white;
         font-size: 1.2em;
         font-weight: 900;
+        line-height: 1.1;
       }
     }
 
@@ -68,6 +72,19 @@
             color: white;
           }
         }
+
+        // Mobile padding adjustments
+        @media (max-width: 768px) {
+          padding: 15px 25px;
+          font-size: 16px;
+          margin: 0 20px;
+        }
+
+        @media (max-width: 500px) {
+          padding: 12px 20px;
+          font-size: 15px;
+          margin: 0 15px;
+        }
       }
     }
   }
@@ -91,7 +108,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 10px;
+      border-radius: 20px;
+      margin-top: 40px;
     }
 
     .responsive-container-block.Container.bottomContainer {
@@ -99,7 +117,7 @@
       margin: 0 auto 50px auto;
       justify-content: center;
       align-items: center;
-      padding: 10px;
+      border-radius: 20px;
     }
 
     .allText.bottomText {
@@ -141,29 +159,12 @@
       margin: 0 0 40px 0;
       text-align: left;
 
-      // Simple styling for bullet points within numbered content
-      .bullet-item {
-        position: relative;
-        padding-left: 15px;
-        margin-bottom: 8px;
-        display: block;
-        
-        &::before {
-          content: "•";
-          position: absolute;
-          left: 0;
-          color: $secondary-color;
-          font-size: 12px;
-          top: 0;
-        }
-      }
     }
 
     // Responsive styles for IntroductionV2 layout
     @media (max-width: 1024px) {
       .responsive-container-block.Container.bottomContainer {
         flex-direction: column;
-        margin-top: 80px;
       }
 
       .allText.bottomText {
@@ -191,10 +192,23 @@
     }
 
     @media (max-width: 768px) {
+      .responsive-container-block.bigContainer {
+        padding: 0;
+        margin: 0;
+      }
+
+      .responsive-container-block.Container.bottomContainer {
+        margin: 0;
+        padding: 0;
+      }
+
       .allText.bottomText {
-        width: 100%;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
         padding: 30px 20px;
-        margin: 40px 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        border-radius: 0;
       }
 
       .section-title h2 {
@@ -210,20 +224,16 @@
         line-height: 26px;
         padding: 0;
       }
-
-      .responsive-container-block.bigContainer {
-        padding: 0 20px;
-      }
     }
 
     @media (max-width: 500px) {
-      .responsive-container-block.bigContainer {
-        padding: 10px 15px;
-      }
-
       .allText.bottomText {
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
         padding: 25px 15px;
-        width: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        border-radius: 0;
       }
 
       .section-title h2 {
@@ -729,6 +739,12 @@
       
       .consejos-title {
         font-size: 2rem;
+        margin-bottom: 1.2rem;
+        line-height: 0.9;
+        
+        br {
+          line-height: 0.5;
+        }
       }
       
       .consejos-subtitle {
@@ -808,10 +824,17 @@
       
       .consejos-title {
         font-size: 1.8rem;
+        margin-bottom: 1rem;
+        line-height: 0.85;
+        
+        br {
+          line-height: 0.3;
+        }
         
         .second-word {
           display: block;
-          margin-top: 0.5rem;
+          margin-top: 0.2rem;
+          margin-bottom: -15px;
         }
       }
     }
@@ -837,6 +860,8 @@
       
       .consejos-title {
         font-size: 3.5rem;
+        margin-bottom: 2rem;
+        line-height: 1.25;
       }
       
       .consejos-subtitle {
