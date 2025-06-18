@@ -2,20 +2,17 @@
 
 .navigationBar {
     z-index: 1000;
+    position: sticky;
+    top: 0;
+    
     .navbar {
         background-color: $primary-color;
         z-index: 1000;
+        padding: 0.5rem 0;
 
         h3 {
             margin: 0;
-            font-size: 14px;
             color: $secondary-color;
-
-            // Style the last word (Taxi)
-            span.last-word {
-                color: $primary-color;
-                margin-left: -4px;
-            }
 
             &.icon-text {
                 margin-top: 0px;
@@ -27,63 +24,202 @@
             height: 40px;
             object-fit: cover;
             margin-right: 10px;
+            
+            // Smaller logo on mobile
+            @media (max-width: 991px) {
+                height: 32px;
+            }
         }
 
         .svg-inline--fa {
             color: white;
         }
 
-        .number-text {
-            padding-right: 0px;
-        }
-
         .custom-call-button {
             display: flex;
             align-items: center;
-            text-decoration: none; /* Remove default underline style */
-            color: inherit; /* Inherit text color */
-            background: none; /* Remove button background */
-            border: none; /* Remove button border */
-            padding: 0; /* Remove button padding */
-            cursor: pointer; /* Change cursor to pointer */
-          }
+            text-decoration: none;
+            color: inherit;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            
+            &:hover,
+            &:focus {
+                text-decoration: underline;
+                color: $secondary-color;
+            }
+        }
           
-          .custom-call-button:hover,
-          .custom-call-button:focus {
-            text-decoration: underline; /* Add underline on hover or focus */
-          }
-          
-          .icon-text {
-            margin-left: 0.5rem; /* Add some space between the icon and the text */
-          }
-    }
+        .icon-text {
+            margin-left: 0.5rem;
+        }
 
-    @media screen and (-webkit-min-device-pixel-ratio:0) { 
-        /* Safari only override */
-        ::i-block-chrome, h3 .icon-text {
-            margin-top: 0px !important;
+        // Custom toggler for mobile
+        .custom-toggler {
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 1.5rem;
+            padding: 0.25rem 0.5rem;
+            
+            &:focus {
+                box-shadow: none;
+            }
+            
+            .svg-inline--fa {
+                color: white;
+            }
+        }
+
+        // Desktop horizontal navigation
+        .horizontal-nav {
+            .nav-link-custom {
+                color: white !important;
+                font-weight: 500;
+                padding: 0.5rem 1rem;
+                margin: 0 0.25rem;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                border-bottom: 2px solid transparent;
+                border-radius: 0;
+                
+                &:hover,
+                &:focus {
+                    color: $secondary-color !important;
+                    border-bottom-color: $secondary-color;
+                }
+                
+                &.active {
+                    color: $secondary-color !important;
+                    border-bottom-color: $secondary-color;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        // Desktop phone styling - smaller
+        .number-text-desktop {
+            h3.icon-text {
+                font-size: 18px;
+                color: white;
+            }
+            
+            .svg-inline--fa {
+                font-size: 18px;
+            }
+        }
+
+        // Mobile phone styling
+        .number-text-mobile {
+            background: rgba(249, 179, 32, 0.2);
+            border-radius: 8px;
+            padding: 0.3rem 0.6rem;
+            border: 1px solid rgba(249, 179, 32, 0.4);
+            
+            h3.icon-text {
+                font-size: 15px;
+                color: white;
+                font-weight: 600;
+                margin: 0;
+            }
+            
+            .svg-inline--fa {
+                font-size: 15px;
+                margin-right: 5px;
+            }
+            
+            .custom-call-button:hover,
+            .custom-call-button:focus {
+                color: $secondary-color;
+                
+                h3.icon-text {
+                    color: $secondary-color;
+                }
+            }
+        }
+
+        // Mobile collapse menu
+        .mobile-collapse {
+            margin-top: 1rem;
+            
+            .mobile-nav-items {
+                border-radius: 0;
+                padding: 0;
+                
+                .mobile-nav-link {
+                    color: white !important;
+                    font-weight: 700;
+                    font-size: 16px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    padding: 1rem 2rem;
+                    margin: 0;
+                    transition: color 0.2s ease, background-color 0.2s ease;
+                    text-decoration: none;
+                    display: block;
+                    width: 100%;
+                    border-left: 6px solid transparent;
+                    
+                    &:hover,
+                    &:focus {
+                        color: $secondary-color !important;
+                        border-left-color: $secondary-color;
+                    }
+                    
+                    &.active {
+                        color: $secondary-color !important;
+                        border-left-color: $secondary-color;
+                        font-weight: 800;
+                    }
+                }
+            }
         }
     }
 
-    @media (max-width: 375px) {
-        img {
-            height: 35px !important;
+    // Responsive breakpoints
+    @media (max-width: 575px) {
+        .navbar {
+            .number-text-mobile {
+                h3.icon-text {
+                    font-size: 13px;
+                }
+                
+                .svg-inline--fa {
+                    font-size: 13px;
+                }
+            }
+
+            img {
+                height: 28px;
+            }
         }
     }
 
-    @media (min-width: 1024px) {
-        h3 {
-            font-size: 32px !important;
-            margin-right: 60px !important;
-        }
+    @media (min-width: 1200px) {
+        .navbar {
+            .number-text-desktop {
+                h3.icon-text {
+                    font-size: 22px;
+                }
+                
+                .svg-inline--fa {
+                    font-size: 22px;
+                }
+            }
 
-        .svg-inline--fa {
-            font-size: 32px !important;
-        }
+            img {
+                height: 50px;
+            }
 
-        img {
-            height: 60px !important;
-            margin-left: 60px !important;
+            .horizontal-nav {
+                .nav-link-custom {
+                    font-size: 1.1rem;
+                    padding: 0.75rem 1.5rem;
+                }
+            }
         }
     }
 }

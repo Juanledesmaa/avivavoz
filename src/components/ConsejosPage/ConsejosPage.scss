@@ -1,0 +1,855 @@
+@import '../../styles/imports';
+
+.consejos-page {
+  min-height: calc(100vh - 140px);
+  
+  .consejos-hero {
+    background: linear-gradient(135deg, $primary-color 0%, $light-primary-color 100%);
+    color: white;
+    padding: 2rem 0;
+    
+    .consejos-title {
+      font-family: 'Brutal Type', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      line-height: 1.3;
+      
+      .first-word {
+        color: white;
+        font-size: 0.8em;
+      }
+      
+      .second-word {
+        color: $secondary-color;
+        font-size: 1.1em;
+      }
+      
+      .third-word {
+        color: white;
+        font-size: 1.2em;
+        font-weight: 900;
+      }
+    }
+
+    .pdf-download-section {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .download-button {
+        background-color: $primary-color;
+        border-color: transparent;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 12px 30px;
+        transition: all 0.3s ease;
+
+        &:hover,
+        &:focus {
+          background-color: $secondary-color;
+          border-color: transparent;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        a {
+          text-decoration: none;
+          color: white;
+          display: block;
+          width: 100%;
+          height: 100%;
+
+          &:hover {
+            text-decoration: none;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  
+  .consejos-content {
+    padding-bottom: 1rem;
+    
+    // IntroductionV2 inspired styles
+    .responsive-container-block {
+      min-height: 75px;
+      height: fit-content;
+      width: 100%;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 auto;
+      justify-content: flex-start;
+    }
+
+    .responsive-container-block.bigContainer {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .responsive-container-block.Container.bottomContainer {
+      flex-direction: row;
+      margin: 0 auto 50px auto;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .allText.bottomText {
+      padding: 40px;
+      width: 100%;
+      margin: 0;
+      background-color: white;
+      border-radius: 20px;
+    }
+
+    .section-title {
+      h2 {
+        font-family: 'Brutal Type', sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: $primary-color;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+    }
+
+    .date-text {
+      color: $secondary-color;
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-family: 'Brutal Type', sans-serif;
+      
+      &.mb-4 {
+        margin-bottom: 2rem;
+      }
+    }
+
+    .text-blk.description {
+      font-size: 18px;
+      line-height: 28px;
+      color: #333;
+      padding: 0 10px;
+      margin: 0 0 40px 0;
+      text-align: left;
+
+      // Simple styling for bullet points within numbered content
+      .bullet-item {
+        position: relative;
+        padding-left: 15px;
+        margin-bottom: 8px;
+        display: block;
+        
+        &::before {
+          content: "•";
+          position: absolute;
+          left: 0;
+          color: $secondary-color;
+          font-size: 12px;
+          top: 0;
+        }
+      }
+    }
+
+    // Responsive styles for IntroductionV2 layout
+    @media (max-width: 1024px) {
+      .responsive-container-block.Container.bottomContainer {
+        flex-direction: column;
+        margin-top: 80px;
+      }
+
+      .allText.bottomText {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 30px 0;
+      }
+
+      .section-title h2 {
+        text-align: center;
+        font-size: 1.8rem;
+      }
+
+      .date-text {
+        text-align: center;
+        font-size: 1.6rem;
+      }
+
+      .text-blk.description {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .allText.bottomText {
+        width: 100%;
+        padding: 30px 20px;
+        margin: 40px 0;
+      }
+
+      .section-title h2 {
+        font-size: 1.6rem;
+      }
+
+      .date-text {
+        font-size: 1.4rem;
+      }
+
+      .text-blk.description {
+        font-size: 16px;
+        line-height: 26px;
+        padding: 0;
+      }
+
+      .responsive-container-block.bigContainer {
+        padding: 0 20px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .responsive-container-block.bigContainer {
+        padding: 10px 15px;
+      }
+
+      .allText.bottomText {
+        padding: 25px 15px;
+        width: 100%;
+      }
+
+      .section-title h2 {
+        font-size: 1.4rem;
+      }
+
+      .date-text {
+        font-size: 1.2rem;
+      }
+
+      .text-blk.description {
+        font-size: 16px;
+        line-height: 24px;
+        margin: 0 0 30px 0;
+      }
+    }
+    
+    .content-section {
+      .section-title {
+        font-family: 'Brutal Type', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: $primary-color;
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80px;
+          height: 4px;
+          background: $secondary-color;
+          border-radius: 2px;
+        }
+      }
+    }
+
+    // Age Group Cards
+    .age-group-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      
+      &.young-kids {
+        border-left: 6px solid #FF6B6B;
+        
+        .age-badge {
+          background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+        }
+      }
+      
+      &.older-kids {
+        border-left: 6px solid #4ECDC4;
+        
+        .age-badge {
+          background: linear-gradient(135deg, #4ECDC4, #45B7AF);
+        }
+      }
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+      
+      .age-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        font-family: 'Brutal Type', sans-serif;
+      }
+      
+      h3 {
+        font-family: 'Brutal Type', sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: $primary-color;
+        margin-bottom: 1.5rem;
+        margin-top: 0.5rem;
+      }
+      
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        
+        li {
+          font-size: 1rem;
+          color: $gray-text;
+          margin-bottom: 1rem;
+          padding-left: 1.5rem;
+          position: relative;
+          line-height: 1.5;
+          
+          &::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: $secondary-color;
+            font-weight: bold;
+          }
+          
+          strong {
+            color: $primary-color;
+          }
+        }
+      }
+    }
+
+    // Custom Accordion
+    .custom-accordion {
+      .accordion-item {
+        border: none;
+        border-radius: 20px;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        background: white;
+        
+        .accordion-header {
+          .accordion-button {
+            background: linear-gradient(135deg, $primary-color, $light-primary-color);
+            color: white;
+            padding: 1.5rem 2rem;
+            border: none;
+            box-shadow: none;
+            font-family: 'Brutal Type', sans-serif;
+            
+            &:hover,
+            &:focus {
+              background: linear-gradient(135deg, $light-primary-color, $primary-color);
+              color: white;
+              box-shadow: none;
+            }
+            
+            &:not(.collapsed) {
+              background: linear-gradient(135deg, $secondary-color, #e6a91a);
+              color: white;
+              box-shadow: none;
+            }
+            
+            &::after {
+              filter: brightness(0) invert(1);
+              font-size: 1.2rem;
+            }
+            
+            .accordion-title {
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              width: 100%;
+              
+              .age-indicator {
+                background: rgba(255, 255, 255, 0.2);
+                padding: 0.3rem 0.8rem;
+                border-radius: 15px;
+                font-size: 0.8rem;
+                font-weight: 600;
+              }
+              
+              h3 {
+                margin: 0;
+                font-size: 1.3rem;
+                font-weight: 600;
+                flex: 1;
+              }
+            }
+          }
+        }
+        
+        .accordion-body {
+          padding: 2rem;
+          background: #fafafa;
+          
+          .exercise-group {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid $secondary-color;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            
+            &:last-child {
+              margin-bottom: 0;
+            }
+            
+            h4 {
+              font-family: 'Brutal Type', sans-serif;
+              font-size: 1.2rem;
+              font-weight: 600;
+              color: $primary-color;
+              margin-bottom: 1rem;
+            }
+            
+            ul {
+              margin: 0;
+              padding: 0;
+              list-style: none;
+              
+              li {
+                font-size: 1rem;
+                color: $gray-text;
+                margin-bottom: 0.8rem;
+                line-height: 1.6;
+                padding-left: 1.5rem;
+                position: relative;
+                
+                &::before {
+                  content: '→';
+                  position: absolute;
+                  left: 0;
+                  color: $secondary-color;
+                  font-weight: bold;
+                }
+                
+                strong {
+                  color: $primary-color;
+                  
+                  &.warning {
+                    color: #e74c3c;
+                    text-transform: uppercase;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Universal Section
+    .universal-section {
+      .subsection-title {
+        font-family: 'Brutal Type', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: $primary-color;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      
+      .intro-text {
+        font-size: 1.1rem;
+        color: $gray-text;
+        text-align: center;
+        margin-bottom: 3rem;
+        line-height: 1.6;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .tip-card {
+        background: white;
+        border-radius: 15px;
+        padding: 1.5rem;
+        height: 100%;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        border-left: 4px solid $secondary-color;
+        
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        h4 {
+          font-family: 'Brutal Type', sans-serif;
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: $primary-color;
+          margin-bottom: 0.8rem;
+        }
+        
+        p {
+          font-size: 0.95rem;
+          color: $gray-text;
+          margin: 0;
+          line-height: 1.5;
+          
+          strong {
+            color: $primary-color;
+          }
+        }
+      }
+    }
+
+    // Exercise Cards
+    .exercise-card {
+      background: white;
+      border: 2px solid $primary-color;
+      border-radius: 12px;
+      padding: 1.8rem;
+      height: 100%;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        border-color: $secondary-color;
+      }
+      
+      h4 {
+        font-family: 'Brutal Type', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $primary-color;
+        margin-bottom: 1rem;
+      }
+      
+      p {
+        font-size: 1rem;
+        color: $gray-text;
+        margin-bottom: 0.8rem;
+        text-align: left;
+        line-height: 1.5;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+        
+        em {
+          color: $secondary-color;
+          font-style: italic;
+          font-weight: 500;
+        }
+      }
+    }
+
+    // Breathing Cards
+    .breathing-card {
+      background: linear-gradient(135deg, rgba(0, 179, 178, 0.05) 0%, rgba(13, 45, 87, 0.05) 100%);
+      border: 2px solid $primary-color;
+      border-radius: 12px;
+      padding: 1.8rem;
+      height: 100%;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        border-color: $secondary-color;
+        background: linear-gradient(135deg, rgba(0, 179, 178, 0.1) 0%, rgba(13, 45, 87, 0.1) 100%);
+      }
+      
+      h4 {
+        font-family: 'Brutal Type', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $primary-color;
+        margin-bottom: 1rem;
+      }
+      
+      p {
+        font-size: 1rem;
+        color: $gray-text;
+        margin: 0;
+        text-align: left;
+        line-height: 1.5;
+        
+        strong {
+          color: $primary-color;
+          text-transform: uppercase;
+          font-weight: 700;
+        }
+      }
+    }
+
+    // Voice Care Section
+    .voice-care-section {
+      h3 {
+        font-family: 'Brutal Type', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: $primary-color;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+      
+      .care-item {
+        background: linear-gradient(135deg, rgba(249, 179, 32, 0.05) 0%, rgba(239, 62, 58, 0.05) 100%);
+        border: 2px solid $primary-color;
+        border-radius: 12px;
+        padding: 1.5rem;
+        height: 100%;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+          border-color: $secondary-color;
+        }
+        
+        h4 {
+          font-family: 'Brutal Type', sans-serif;
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: $primary-color;
+          margin-bottom: 0.8rem;
+        }
+        
+        p {
+          font-size: 1rem;
+          color: $gray-text;
+          margin: 0;
+          text-align: left;
+          line-height: 1.4;
+        }
+      }
+      
+      .daily-care-list {
+        background: white;
+        border: 3px solid $primary-color;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          
+          li {
+            font-size: 1rem;
+            color: $gray-text;
+            margin-bottom: 1.2rem;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.6;
+            
+            &::before {
+              content: '💡';
+              position: absolute;
+              left: 0;
+              top: 0;
+            }
+            
+            strong {
+              color: $primary-color;
+            }
+          }
+        }
+      }
+    }
+
+    // Final Message
+    .final-message {
+      margin-top: 1rem;
+      
+      .celebration-card {
+        background: linear-gradient(135deg, $secondary-color 0%, rgba(249, 179, 32, 0.8) 100%);
+        color: white;
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        
+        h2 {
+          font-family: 'Brutal Type', sans-serif;
+          font-size: 2.5rem;
+          font-weight: 800;
+          margin-bottom: 1rem;
+        }
+        
+        .lead {
+          font-size: 1.3rem;
+          margin-bottom: 1.5rem;
+          opacity: 0.95;
+        }
+        
+        .highlight-text {
+          font-family: 'Brutal Type', sans-serif;
+          font-size: 1.8rem;
+          font-weight: 700;
+          background: rgba(255, 255, 255, 0.2);
+          padding: 1rem 2rem;
+          border-radius: 10px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+  
+  // Responsive design
+  @media (max-width: 768px) {
+    .consejos-hero {
+      padding: 1.5rem 0;
+      
+      .consejos-title {
+        font-size: 2rem;
+      }
+      
+      .consejos-subtitle {
+        font-size: 1rem;
+      }
+
+      .instructor-info {
+        padding: 1rem;
+        
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    
+    .consejos-content {
+      .content-section {
+        .section-title {
+          font-size: 1.8rem;
+        }
+      }
+      
+      .age-group-card,
+      .exercise-card,
+      .breathing-card,
+      .care-item {
+        padding: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      
+      .custom-accordion {
+        .accordion-item {
+          .accordion-header {
+            .accordion-button {
+              padding: 1rem 1.5rem;
+              
+              h3 {
+                font-size: 1.2rem;
+              }
+            }
+          }
+          
+          .accordion-body {
+            padding: 1.5rem 1rem;
+            
+            .exercise-group {
+              padding: 1rem;
+            }
+          }
+        }
+      }
+      
+      .final-message {
+        .celebration-card {
+          padding: 2rem 1.5rem;
+          
+          h2 {
+            font-size: 2rem;
+          }
+          
+          .lead {
+            font-size: 1.1rem;
+          }
+          
+          .highlight-text {
+            font-size: 1.4rem;
+            padding: 0.8rem 1.5rem;
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .consejos-hero {
+      padding: 1rem 0;
+      
+      .consejos-title {
+        font-size: 1.8rem;
+        
+        .second-word {
+          display: block;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+    
+    .consejos-content {
+      .final-message {
+        .celebration-card {
+          h2 {
+            font-size: 1.8rem;
+          }
+          
+          .highlight-text {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .consejos-hero {
+      padding: 3rem 0;
+      
+      .consejos-title {
+        font-size: 3.5rem;
+      }
+      
+      .consejos-subtitle {
+        font-size: 1.4rem;
+      }
+    }
+    
+    .consejos-content {
+      .content-section {
+        .section-title {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+}

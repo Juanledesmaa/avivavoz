@@ -1,6 +1,10 @@
 .App {
   text-align: center;
   overflow-x: hidden;
+  
+  .main-content {
+    min-height: calc(100vh - 140px);
+  }
 }
 
 .App-logo {
