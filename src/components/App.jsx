@@ -1,35 +1,26 @@
 import '../styles/App.scss';
-import { useState, useEffect } from 'react';
-
-import Banner from './Banner/Banner';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavigationBar from './NavigationBar/NavigationBar';
-import Introduction from './Introduction/Introduction';
-import IntroductionV2 from './IntroductionV2/IntroductionV2';
-import Services from './About/Services';
-import Contact from './Contact/Contact';
 import Footer from './Footer/Footer';
-import JsonData from '../data/data.json';
-import ProgramPDF from './ProgramPDF/ProgramPDF';
+import HomePage from './HomePage/HomePage';
+import ConsejosPage from './ConsejosPage/ConsejosPage';
 
 const App = () => {
-  const [landingPageData, setLandingPageData] = useState({})
-  useEffect(() => {
-    setLandingPageData(JsonData)
-  }, [])
-
   return (
-    <div className="App">
-      <div className="text-center">
-        <NavigationBar />
-        <Banner />
-        <ProgramPDF />
-        <Introduction />
-        <Services data={landingPageData.Services} />
-        <IntroductionV2 />
-        <Contact />
-        <Footer />
+    <Router>
+      <div className="App">
+        <div className="text-center">
+          <NavigationBar />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/consejos" element={<ConsejosPage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </Router>
   );
 };
 

@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import App from './components/App';
 
-test('renders learn react link', () => {
+test('renders navigation bar', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const logoElements = screen.getAllByAltText(/A Viva Voz Logo/i);
+  expect(logoElements.length).toBeGreaterThan(0);
+  expect(logoElements[0]).toBeInTheDocument();
 });
