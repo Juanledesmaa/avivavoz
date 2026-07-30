@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# A Viva Voz Coaching
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Marketing site for **A Viva Voz Coaching LLC** — vocal coaching, singing and oratory workshops in Puerto Rico, taught by Omayra Martínez.
 
-## Available Scripts
+Live at [avivavozcoaching.com](https://avivavozcoaching.com/).
 
-In the project directory, you can run:
+## Stack
 
-### `npm start`
+- React 18 + React Router 6 (client-side routing)
+- React Bootstrap 5 for layout and components
+- SCSS with shared variables in `src/styles/` and per-component stylesheets
+- Custom "Brutal Type" webfont family
+- Bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npm install
+npm start
+```
 
-### `npm test`
+Opens [http://localhost:3000](http://localhost:3000) with hot reload.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Scripts
 
-### `npm run build`
+| Command | What it does |
+|---|---|
+| `npm start` | Dev server on port 3000 |
+| `npm run build` | Production bundle into `build/` |
+| `npm test` | Jest in watch mode |
+| `npm run eject` | One-way CRA eject — avoid |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Pages
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| Route | Contents |
+|---|---|
+| `/` | "The Vocal Journey" event hero with a registration CTA, about, services, "Coaching Kids", coach bio, contact info, downloadable policy and workshop PDFs |
+| `/consejos` | "Consejos para seguimiento en casa" — long-form guide for parents, with PDF download |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Deployment
 
-### `npm run eject`
+Hosted on **Netlify**. Build output in `build/` is served as a static SPA, and `public/_redirects` rewrites all paths to `index.html` (status 200) so routes like `/consejos` resolve on a direct hit or refresh.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Registration form
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The Vocal Journey sign-up form uses **Netlify Forms**. Two things must be set in the Netlify dashboard — they cannot be configured from this repo:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Enable automatic form detection** in site settings, then redeploy. If it is off, submissions are silently discarded.
+2. **Add a form notification** for the `vocal-journey-2027` form pointing at `avivavozcanta@gmail.com`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Submissions also appear under **Forms** in the Netlify dashboard. The free tier covers 100 per month.
 
-## Learn More
+A real submission cannot be tested with `npm start` — use a deploy preview or `netlify dev`. See [CLAUDE.md](CLAUDE.md) for how the hidden static form in `public/index.html` ties into this.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Project layout
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+public/          index.html, favicons, manifest, _redirects
+src/
+  components/    one folder per component (ComponentName.jsx + ComponentName.scss)
+  data/          data.json — copy for the coach bio card
+  styles/        _colors, _fonts, _imports, index.scss, App.scss
+  img/           logos, parallax backgrounds, banner videos, downloadable PDFs
+  fonts/         Brutal Type family
+```
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+See [CLAUDE.md](CLAUDE.md) for a detailed architecture breakdown and known rough edges.

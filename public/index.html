@@ -25,12 +25,30 @@
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/android-chrome-192x192.png" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <title>A viva voz Coaching</title>
-  </script>
 </head>
 
 <body>
   <noscript>Necesitas habilitar JavaScript para ejecutar esta aplicación.</noscript>
   <div id="root"></div>
+
+  <!--
+    Netlify detects forms by parsing the built HTML, and our real form is rendered by
+    React at runtime. This hidden copy is what registers the form and its fields with
+    Netlify at deploy time. Keep the form name and every input name in sync with
+    src/components/RequestInfoModal/RequestInfoModal.jsx — a mismatch means the
+    submission is accepted but the field arrives empty.
+  -->
+  <form name="vocal-journey-2027" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="text" name="nombre" />
+    <input type="text" name="edades" />
+    <input type="email" name="email" />
+    <input type="tel" name="telefono" />
+    <input type="text" name="experiencia" />
+    <input type="text" name="conoce-registro" />
+    <input type="text" name="registro" />
+    <textarea name="expectativas"></textarea>
+    <input type="text" name="bot-field" />
+  </form>
 </body>
 
 </html>
