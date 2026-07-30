@@ -88,7 +88,6 @@ const Introduction = () => (
                                             <li>• Fortalecer la comunicación y el nivel de atención desde edad temprana.</li>
                                             <li>• Promover el explorar la voz, descubriendo el potencial en cada niño.</li>
                                         </ul>
-                                        <h4 class="text-blk description">¿Te interesa asistir a nuestro evento <strong>Coaching Kids</strong>?:</h4>
                                     </Col>
 
                                 </Row>
