@@ -1,12 +1,22 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 import './ProgramPDF.scss';
 
-export default function ProgramPDF() {
+export default function ProgramPDF({ onRequestInfo }) {
   return (
 
     <div className="program-pdf">
       <div id="features" className='text-center'>
         <div className='container'>
+          {/* The banner CTA moves here on tablet and mobile, where overlaying it on the
+              art would cover the tagline and contact pill. Hidden from 768px up, where
+              the banner shows its own overlaid button. */}
+          <div className="request-info-cta">
+            <Button variant="primary" className="request-info-button" onClick={onRequestInfo}>
+              Solicitar información
+            </Button>
+          </div>
+
           <div className='col-md-8 section-title text-center mx-auto'>
             <h2>SOBRE NOSOTROS</h2>
             <h3>

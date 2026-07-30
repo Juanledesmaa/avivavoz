@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import heroArt from "../../img/vocal_journey_2027.jpeg";
-import RequestInfoModal from '../RequestInfoModal/RequestInfoModal';
 
 import './banner.scss';
 
@@ -33,9 +32,7 @@ const useNavHeightVar = () => {
   }, []);
 };
 
-const Banner = () => {
-  const [showModal, setShowModal] = useState(false);
-
+const Banner = ({ onRequestInfo }) => {
   useNavHeightVar();
 
   return (
@@ -54,19 +51,18 @@ const Banner = () => {
             alt="A Viva Voz El Coaching presenta The Vocal Journey: Broadway, New York y Pennsylvania, del 8 al 14 de octubre de 2027. Viaja, canta, aprende, transfórmate. Con Omayra Martínez, profesora de canto, y Yashira Guidini, cantante."
           />
 
+          {/* Hidden below 768px, where the CTA moves to the top of the next section. */}
           <div className="vj-cta">
             <Button
               variant="primary"
               className="vj-cta-button"
-              onClick={() => setShowModal(true)}
+              onClick={onRequestInfo}
             >
               Solicitar información
             </Button>
           </div>
         </div>
       </section>
-
-      <RequestInfoModal show={showModal} onHide={() => setShowModal(false)} />
     </div>
   );
 };

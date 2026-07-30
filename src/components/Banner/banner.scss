@@ -195,57 +195,12 @@ $vj-nav-height-fallback: 76px;
     }
 
     // Tablet and mobile: the art is only ~half the viewport width tall here, so a
-    // legible button overlaid on it covers too much of the artwork. Below 768px the
-    // button leaves the art entirely and becomes a full-width band directly beneath it.
+    // legible button overlaid on it would cover the tagline and the contact pill. The
+    // CTA is rendered at the top of the following "Sobre nosotros" section instead
+    // (see ProgramPDF), so the hero just shows the artwork on its own.
     @media (max-width: 767.98px) {
-
-        // Let the hero grow to fit the art plus the button stacked underneath, instead
-        // of being pinned to the art's aspect ratio.
-        .vj-hero {
-            display: block;
-            height: auto;
-        }
-
-        .vj-frame {
-            aspect-ratio: auto;
-            max-height: none;
-            width: 100%;
-            margin: 0;
-        }
-
-        // Natural height at full width, so the art keeps its ratio with nothing cropped.
-        .vj-art {
-            height: auto;
-        }
-
-        // No leftover space to fill once the hero hugs the art.
-        .vj-backdrop {
-            display: none;
-        }
-
         .vj-cta {
-            position: static;
-            width: 100%;
-            height: auto;
-            min-width: 0;
-            min-height: 0;
-            transform: none;
-            display: block;
-
-            .vj-cta-button {
-                height: auto;
-                padding: 16px 20px;
-                font-size: 17px;
-                white-space: normal; // the label may wrap on the narrowest phones
-                // Full-bleed band: square corners and no keyline, since it no longer
-                // sits on the artwork and has nothing to separate itself from.
-                border: 0;
-                border-radius: 0;
-                box-shadow: none;
-                // The pulse scales the button, which on a full-width band would push it
-                // past the viewport edges.
-                animation: none;
-            }
+            display: none;
         }
     }
 
