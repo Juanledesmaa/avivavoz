@@ -71,7 +71,7 @@ Validation is client-side in the modal's `validate()`, in Spanish, all fields re
 Two dashboard-side settings live outside this repo and cannot be configured in code:
 
 - **Automatic form detection** must be enabled in the Netlify site settings, followed by a redeploy. If it's off, submissions vanish silently — this is the most common failure mode.
-- **Form notifications** are configured per-form in the Netlify UI. Currently pointed at `umbranito@gmail.com` **for testing only** — this must be switched to `avivavozcanta@gmail.com` before the page is promoted, or the owner never sees a single sign-up. The recipient is not in this repo and cannot be set from `netlify.toml`; it is dashboard-only.
+- **Form notifications** are configured per-form in the Netlify UI, and go to `avivavozcanta@gmail.com`. The recipient is not stored in this repo and cannot be set from `netlify.toml` — it is dashboard-only, so changing it is always a manual step there.
 
 The free tier allows 100 submissions/month; past that, submissions are blocked rather than queued. On any failure the modal keeps the entered values and offers a Gmail compose fallback.
 
