@@ -223,7 +223,7 @@ const RequestInfoModal = ({ show, onHide }) => {
               </p>
               <p className="vj-success-note">
                 Si necesitas hablar con nosotros antes, llámanos al{' '}
-                <a href="tel:7873799456">787-379-9456</a>.
+                <a href="tel:9393905475">939-390-5475</a>.
               </p>
             </div>
           </Modal.Body>
