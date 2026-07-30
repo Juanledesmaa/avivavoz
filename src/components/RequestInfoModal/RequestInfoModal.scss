@@ -10,9 +10,23 @@
         text-align: left;
     }
 
+    // The form wraps .modal-body and .modal-footer, which makes it the flex child of
+    // .modal-content instead of them. A plain block element there breaks Bootstrap's
+    // scrollable chain: .modal-body never gets a bounded height, so it cannot scroll,
+    // and .modal-content's `overflow: hidden` then clips the overflow outright — the
+    // footer with the submit button included. Re-establish the chain through the form.
+    .modal-content > form {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: hidden;
+    }
+
     .modal-header {
         border-bottom: 2px solid rgba($primary-color, 0.15);
         padding: 20px 24px 14px;
+        flex: 0 0 auto;
 
         .modal-title {
             h2 {
@@ -45,11 +59,16 @@
 
     .modal-body {
         padding: 22px 24px;
+        flex: 1 1 auto;
+        min-height: 0; // without this the body refuses to shrink below its content
+        overflow-y: auto;
+        overscroll-behavior: contain; // don't chain the scroll to the page behind
     }
 
     .modal-footer {
         border-top: 2px solid rgba($primary-color, 0.15);
         padding: 14px 24px;
+        flex: 0 0 auto;
 
         .btn {
             border-radius: 10px;
