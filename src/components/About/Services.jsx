@@ -3,7 +3,7 @@ import React from "react";
 import './Services.scss'
 
 // Import your images
-import profile from '../../img/jose_profile.jpeg';
+import profile from '../../img/omayra_profile.jpeg';
 
 // Mapping object for image imports
 const imageMap = {
