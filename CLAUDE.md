@@ -2,6 +2,21 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Documentation
+
+Deeper documentation lives in `docs/`. This file stays the quick orientation; those go into detail.
+
+| Doc | Covers |
+|---|---|
+| `docs/tutorial-getting-started.md` | Install, run, first content change, production build |
+| `docs/howto-update-content.md` | Which file holds which copy, swapping assets, adding a page |
+| `docs/howto-registration-form.md` | Netlify Forms setup, adding fields, testing, spam troubleshooting |
+| `docs/reference-project-structure.md` | Directories, scripts, design tokens, breakpoints, known asset issues |
+| `docs/reference-components.md` | Every route, component, and prop |
+| `docs/explanation-architecture.md` | Why the hero sizing, CTA placement, form, and photo crop work as they do |
+
+Read `docs/explanation-architecture.md` before modifying the hero, the CTA, or the registration form. Each of those carries a decision that has already been broken once by a reasonable looking simplification.
+
 ## Project Overview
 
 "A Viva Voz Coaching" — a React marketing site for a vocal coaching business in Puerto Rico (voice, singing and oratory workshops taught by Omayra Martínez). Built with Create React App, React Bootstrap and custom SCSS. All user-facing content is in Spanish.
@@ -31,9 +46,9 @@ Adding a page means: create the component folder, add a `<Route>` in `App.jsx`, 
 
 `HomePage` loads `data.json` into `useState` and renders, in order:
 
-1. `Banner` — the "The Vocal Journey" event hero: a single piece of artwork (`vocal_journey_2027.jpeg`, 2048×1024) plus a floating CTA that opens `RequestInfoModal`. See "The hero" below
-2. `ProgramPDF` — the "SOBRE NOSOTROS" copy block. Despite the name it no longer renders a PDF; its `.pdf-container` is empty
-3. `Introduction` — "SERVICIOS" and "COACHING KIDS" sections, external ticket link (`buytickets.at/avivavozcoaching`), and a download button for `politicas_a_viva_voz_final_compressed.pdf`
+1. `Banner` — the "The Vocal Journey" event hero: a single piece of artwork (`vocal_journey_2027.jpeg`, 2048×1024) plus the CTA overlaid on it at 768px and up. See "The hero" below
+2. `ProgramPDF` — the "SOBRE NOSOTROS" copy block, plus the same CTA relocated to the top of this section below 768px. Despite the name it no longer renders a PDF; its `.pdf-container` is empty
+3. `Introduction` — "SERVICIOS" and "COACHING KIDS" sections, and a download button for `politicas_a_viva_voz_final_compressed.pdf`
 4. `Services` — the coach bio card; the only component driven by `data.json`
 5. `IntroductionV2` — group and individual sessions, vocal technique, download button for `Temas_Talleres.pdf`
 6. `Contact` — carries `id="formSection"`, the Banner's scroll target. **Not a form**: phone link, a Gmail compose deep link for `avivavozcanta@gmail.com`, plus Facebook and Instagram links
@@ -49,6 +64,15 @@ Adding a page means: create the component folder, add a `<Route>` in `App.jsx`, 
 - The CTA is **always horizontally centred** in the frame (`left: 50%`). Its `width: 47%` is what lets a centred button fully cover the `VIAJA · CANTA · APRENDE · TRANSFÓRMATE` tagline, which spans x 30–56% of the art — i.e. centred on 43%, not 50%. There is deliberately **no px `max-width`**: a cap binds on wide screens and lets the tagline poke out past the button.
 - `bottom: 12.5%` places it over the tagline (y 82–86%) while clearing the website/phone pill below (y 88.5–94%), so contact details stay readable. All these percentages are relative to the frame, so the button holds its position on the art at every size.
 - Contrast: teal and the red art sit at similar luminance, so hue alone didn't separate the button. The white keyline does the work; the gradient, glow pulse, and shine sweep signal that it's pressable. All motion is disabled under `prefers-reduced-motion`.
+
+**The CTA has two placements**, switched at exactly `767.98px`, with only one visible at a time:
+
+| Viewport | Placement | Rendered by |
+|---|---|---|
+| 768px and up | Overlaid on the artwork | `Banner` |
+| Below 768px | Top of the "Sobre nosotros" section | `ProgramPDF` |
+
+Below 768px the art is only ~half the viewport width tall, so an overlaid button would cover the tagline and contact pill. Because the CTA lives in two components, **modal state is owned by `HomePage`**, which renders `RequestInfoModal` once and passes the same `onRequestInfo` callback to both — `Banner` is presentational. The `767.98px` value appears in both `banner.scss` and `ProgramPDF.scss` and must match, or the button appears twice or not at all. The relocated button defines its own `riPulse`/`riShine` keyframes rather than reusing the banner's, so it doesn't depend on another component's stylesheet being loaded.
 
 The old autoplay video hero is gone. `viva_voz_mobile.mp4` and `viva_voz_desktop.mp4` are deliberately kept in `src/img/` but are no longer referenced, in case the animated hero is wanted back after the event.
 
@@ -143,3 +167,22 @@ Be aware of these; don't fix them unasked:
 - `Introduction.jsx` and `IntroductionV2.jsx` mix `class=` with `className=` in JSX. React ignores `class=`, so those styles silently never apply. These are the source of the `Invalid DOM property` and non-boolean `block` warnings in the browser console.
 - `public/index.html` links `favicon.ico`, which does not exist in `public/` (only `.png` variants do).
 - `@emailjs/browser`, `react-pdf`, `@fileforge/pdfreader`, `react-image-gallery` and `react-fast-marquee` are still dependencies, but nothing in the live render path uses them. EmailJS in particular is a leftover from a contact form that no longer exists — the registration form uses Netlify Forms, not EmailJS.
+
+## Skill routing
+
+When the user's request matches an available skill, invoke it via the Skill tool. When in doubt, invoke the skill.
+
+Key routing rules:
+- Product ideas/brainstorming → invoke /office-hours
+- Strategy/scope → invoke /plan-ceo-review
+- Architecture → invoke /plan-eng-review
+- Design system/plan review → invoke /design-consultation or /plan-design-review
+- Full review pipeline → invoke /autoplan
+- Bugs/errors → invoke /investigate
+- QA/testing site behavior → invoke /qa or /qa-only
+- Code review/diff check → invoke /review
+- Visual polish → invoke /design-review
+- Ship/deploy/PR → invoke /ship or /land-and-deploy
+- Save progress → invoke /context-save
+- Resume context → invoke /context-restore
+- Author a backlog-ready spec/issue → invoke /spec

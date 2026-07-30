@@ -4,6 +4,21 @@ Marketing site for **A Viva Voz Coaching LLC** — vocal coaching, singing and o
 
 Live at [avivavozcoaching.com](https://avivavozcoaching.com/).
 
+## Documentation
+
+Full docs live in [`docs/`](docs/), organised by what you are trying to do:
+
+| Doc | Read it when |
+|---|---|
+| [Tutorial: run the site and make your first change](docs/tutorial-getting-started.md) | You are new here and want it running in ten minutes |
+| [How to update content, assets, and pages](docs/howto-update-content.md) | You need to change copy, swap a photo or PDF, or add a page |
+| [How to work with the registration form](docs/howto-registration-form.md) | You are touching the sign up form, its fields, or its email delivery |
+| [Reference: project structure, scripts, design tokens](docs/reference-project-structure.md) | You need to look up a command, a color, a breakpoint, or an asset |
+| [Reference: routes, components, and props](docs/reference-components.md) | You need a component's props or what it renders |
+| [Explanation: why the hero and form are built this way](docs/explanation-architecture.md) | **Before** changing the hero sizing, the CTA, or the form |
+
+That last one is not optional reading if you plan to touch the banner or the form. Both contain decisions that look like over engineering and are not.
+
 ## Stack
 
 - React 18 + React Router 6 (client-side routing)
