@@ -89,12 +89,6 @@ const Introduction = () => (
                                             <li>• Promover el explorar la voz, descubriendo el potencial en cada niño.</li>
                                         </ul>
                                         <h4 class="text-blk description">¿Te interesa asistir a nuestro evento <strong>Coaching Kids</strong>?:</h4>
-                                        <div className="mb-4"></div>
-                                        <a href="https://buytickets.at/avivavozcoaching" target="_blank" rel="noopener noreferrer">
-                                            Haz clic aquí para adquirir tus entradas.
-                                        </a>
-
-
                                     </Col>
 
                                 </Row>
