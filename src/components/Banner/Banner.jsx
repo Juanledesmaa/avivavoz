@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import heroArt from "../../img/vocal_journey_2027.jpeg";
 import RequestInfoModal from '../RequestInfoModal/RequestInfoModal';
 
@@ -62,8 +60,7 @@ const Banner = () => {
               className="vj-cta-button"
               onClick={() => setShowModal(true)}
             >
-              <span className="vj-cta-label">Solicitar información</span>
-              <FontAwesomeIcon icon={faArrowRight} className="vj-cta-arrow" />
+              Solicitar información
             </Button>
           </div>
         </div>

@@ -101,7 +101,6 @@ $vj-nav-height-fallback: 76px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.6em;
             // Scales with the hero so the button keeps filling the pill's slot.
             padding: clamp(6px, 0.7vw, 13px) clamp(12px, 1vw, 20px);
             font-size: clamp(13px, 1.15vw, 22px);
@@ -145,12 +144,6 @@ $vj-nav-height-fallback: 76px;
                 animation: vjShine 2.6s ease-in-out infinite;
             }
 
-            .vj-cta-arrow {
-                flex: 0 0 auto;
-                font-size: 0.85em;
-                transition: transform 0.18s ease;
-            }
-
             &:hover,
             &:focus-visible {
                 // filter, not a colour swap, so the gradient keeps its depth.
@@ -162,10 +155,6 @@ $vj-nav-height-fallback: 76px;
                 // Must be `none`, not `paused` — a paused animation keeps applying its
                 // current keyframe transform, which would beat the hover transform.
                 animation: none;
-
-                .vj-cta-arrow {
-                    transform: translateX(3px);
-                }
             }
 
             &:active {
@@ -205,12 +194,58 @@ $vj-nav-height-fallback: 76px;
         }
     }
 
-    // Narrow screens: the frame is only ~half the viewport width tall, so a legible
-    // button is proportionally much taller than the band it sits over and will reach
-    // further up the art. Nothing to do but keep the corners tighter at this size.
-    @media (max-width: 767px) {
-        .vj-cta .vj-cta-button {
-            border-radius: 8px;
+    // Tablet and mobile: the art is only ~half the viewport width tall here, so a
+    // legible button overlaid on it covers too much of the artwork. Below 768px the
+    // button leaves the art entirely and becomes a full-width band directly beneath it.
+    @media (max-width: 767.98px) {
+
+        // Let the hero grow to fit the art plus the button stacked underneath, instead
+        // of being pinned to the art's aspect ratio.
+        .vj-hero {
+            display: block;
+            height: auto;
+        }
+
+        .vj-frame {
+            aspect-ratio: auto;
+            max-height: none;
+            width: 100%;
+            margin: 0;
+        }
+
+        // Natural height at full width, so the art keeps its ratio with nothing cropped.
+        .vj-art {
+            height: auto;
+        }
+
+        // No leftover space to fill once the hero hugs the art.
+        .vj-backdrop {
+            display: none;
+        }
+
+        .vj-cta {
+            position: static;
+            width: 100%;
+            height: auto;
+            min-width: 0;
+            min-height: 0;
+            transform: none;
+            display: block;
+
+            .vj-cta-button {
+                height: auto;
+                padding: 16px 20px;
+                font-size: 17px;
+                white-space: normal; // the label may wrap on the narrowest phones
+                // Full-bleed band: square corners and no keyline, since it no longer
+                // sits on the artwork and has nothing to separate itself from.
+                border: 0;
+                border-radius: 0;
+                box-shadow: none;
+                // The pulse scales the button, which on a full-width band would push it
+                // past the viewport edges.
+                animation: none;
+            }
         }
     }
 
