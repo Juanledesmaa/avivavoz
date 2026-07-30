@@ -46,7 +46,7 @@ Hosted on **Netlify**. Build output in `build/` is served as a static SPA, and `
 The Vocal Journey sign-up form uses **Netlify Forms**. Two things must be set in the Netlify dashboard — they cannot be configured from this repo:
 
 1. **Enable automatic form detection** in site settings, then redeploy. If it is off, submissions are silently discarded.
-2. **Add a form notification** for the `vocal-journey-2027` form. Currently set to `umbranito@gmail.com` **for testing** — switch it to `avivavozcanta@gmail.com` before promoting the page.
+2. **Add a form notification** for the `vocal-journey-2027` form, pointing at `avivavozcanta@gmail.com`.
 
 The notification recipient is a dashboard setting. It is not stored in this repo and cannot be set from `netlify.toml`.
 
