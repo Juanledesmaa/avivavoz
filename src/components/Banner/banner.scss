@@ -1,124 +1,209 @@
 @import '../../styles/imports';
 
+// Sampled from vocal_journey_2027.jpeg. Only ever visible for a frame before the art
+// paints, or on a sub-pixel rounding edge — the art itself covers the hero.
+$vj-fill-top: #C1272D;
+$vj-fill-mid: #DB2A18;
+$vj-fill-bottom: #ED5837;
+
+// Fallback only. Banner.jsx measures the sticky navbar and overwrites --vj-nav-h.
+$vj-nav-height-fallback: 76px;
+
 .banner {
 
-    @keyframes slideInFromTop {
-        0% {
-          opacity: 0;
-          transform: translateY(50px);
+    .vj-hero {
+        position: relative;
+        width: 100%;
+        // Match the art's own ratio so it fills the hero edge to edge: no letterbox
+        // bars, and nothing cropped.
+        aspect-ratio: 2048 / 1024;
+        // Never taller than the space under the navbar, so the whole banner and the
+        // floating CTA are on screen without scrolling. When this cap kicks in (short,
+        // wide viewports) the art crops slightly top and bottom rather than showing bars.
+        max-height: calc(100vh - var(--vj-nav-h, #{$vj-nav-height-fallback}));
+        max-height: calc(100dvh - var(--vj-nav-h, #{$vj-nav-height-fallback}));
+        overflow: hidden;
+        background: linear-gradient(180deg, $vj-fill-top 0%, $vj-fill-mid 45%, $vj-fill-bottom 100%);
+    }
+
+    // aspect-ratio has been supported since Safari 15 / Chrome 88; this keeps the hero
+    // from collapsing to zero height on anything older.
+    @supports not (aspect-ratio: 2 / 1) {
+        .vj-hero {
+            height: 50vw;
+        }
+    }
+
+    .vj-art {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    // The artwork's own info pill (website + phone) sits at x 27%–58%, y 88.5%–94%.
+    // That band is the only part of the lower art that isn't type, so the CTA takes
+    // its place: the button reads as replacing the pill instead of colliding with it.
+    // Nothing is lost — the URL is the site you are already on and the phone number
+    // is in the navbar.
+    .vj-cta {
+        position: absolute;
+        // Slightly larger than the pill on every side so it covers it completely.
+        bottom: 5.5%;
+        left: 42.5%; // horizontal centre of the pill, not of the hero
+        transform: translateX(-50%);
+        width: 34%;
+        height: 6.5%;
+        min-width: min(280px, 78%);
+        min-height: 30px;
+        max-width: 620px;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+
+        .vj-cta-button {
+            position: relative;
+            overflow: hidden; // clips the shine sweep
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6em;
+            // Scales with the hero so the button keeps filling the pill's slot.
+            padding: clamp(6px, 0.7vw, 13px) clamp(12px, 1vw, 20px);
+            font-size: clamp(13px, 1.15vw, 22px);
+            font-weight: bold;
+            line-height: 1.1;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            color: $white;
+            // Brighter than flat teal, and a gradient reads as a raised, pressable
+            // surface rather than a flat block of colour.
+            background: linear-gradient(180deg, #00D9D7 0%, $primary-color 55%, #00918F 100%);
+            // The white keyline is what actually separates the button from the busy
+            // artwork: the teal and the red behind it sit at similar luminance, so hue
+            // alone was not enough to make the shape read.
+            border: 3px solid rgba($white, 0.95);
+            border-radius: 999px;
+            box-shadow:
+                0 6px 22px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(0, 0, 0, 0.12);
+            transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease;
+            animation: vjPulse 2.6s ease-in-out infinite;
+
+            // Shine sweep: a soft highlight travelling across the face, which reads as
+            // "interactive" without moving the button itself.
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: -60%;
+                width: 45%;
+                background: linear-gradient(
+                    100deg,
+                    rgba($white, 0) 0%,
+                    rgba($white, 0.55) 50%,
+                    rgba($white, 0) 100%
+                );
+                transform: skewX(-18deg);
+                pointer-events: none;
+                animation: vjShine 2.6s ease-in-out infinite;
+            }
+
+            .vj-cta-arrow {
+                flex: 0 0 auto;
+                font-size: 0.85em;
+                transition: transform 0.18s ease;
+            }
+
+            &:hover,
+            &:focus-visible {
+                // filter, not a colour swap, so the gradient keeps its depth.
+                filter: brightness(1.08);
+                transform: translateY(-2px) scale(1.02);
+                box-shadow:
+                    0 10px 30px rgba(0, 0, 0, 0.55),
+                    0 0 0 1px rgba(0, 0, 0, 0.12);
+                // Must be `none`, not `paused` — a paused animation keeps applying its
+                // current keyframe transform, which would beat the hover transform.
+                animation: none;
+
+                .vj-cta-arrow {
+                    transform: translateX(3px);
+                }
+            }
+
+            &:active {
+                transform: translateY(0) scale(0.99);
+            }
+
+            &:focus-visible {
+                outline: 3px solid $white;
+                outline-offset: 3px;
+            }
+        }
+    }
+
+    // Scale up only, never below 1 — shrinking would expose the artwork's info pill
+    // underneath the button.
+    @keyframes vjPulse {
+        0%, 100% {
+            transform: scale(1);
+            box-shadow:
+                0 6px 22px rgba(0, 0, 0, 0.5),
+                0 0 0 0 rgba($white, 0.55);
+        }
+        50% {
+            transform: scale(1.025);
+            box-shadow:
+                0 8px 26px rgba(0, 0, 0, 0.55),
+                0 0 0 10px rgba($white, 0);
+        }
+    }
+
+    @keyframes vjShine {
+        0%, 55% {
+            left: -60%;
         }
         100% {
-          opacity: 1;
-          transform: translateY(0);
+            left: 130%;
         }
-      }
+    }
 
-    section {
-        overflow: hidden;
-        position: relative;
+    // Narrow screens: the hero is only ~half the viewport width tall, so a legible
+    // button is proportionally much taller than the pill it sits over. Drop it to the
+    // bottom edge to keep as much artwork uncovered as possible.
+    @media (max-width: 767px) {
+        .vj-cta {
+            bottom: 4%;
+            left: 50%; // recentre: at this size the button is wider than the pill anyway
 
-
-        .shadow-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%; // Adjust height to control the size of the shadow
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
-            pointer-events: none; // Allow clicks to pass through to the banner
-        }
-
-        .bg-banner {
-            max-width: 100%;
-            width: 100%;
-            object-fit: cover;
-            z-index: -1;
-            object-position: top;
-        }
-
-        .button-container {
-            position: absolute;
-            bottom: 20px;
-            width: 100% !important;
-
-            .btn {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 10px;
-                border-color: transparent;
-                background-color: $primary-color;
-                font-size: 24px;
-                text-transform: uppercase;
-                font-weight: bold;
-                line-height: 0.95;
-                padding-top: 10px;
-                padding-bottom: 10px;
-
-                h3 {
-                    margin: 0 !important;
-                    color: $white;
-                }
-
-                &.whatsapp {
-                    background-color: $whatsapp-green;
-                }
-
-                .svg-inline--fa {
-                    margin-right: 3px;
-                    font-size: 18px;
-                }
-            }
-
-            .smaller {
-                color: $secondary-color;
-                font-size: smaller;
-            }
-        }
-
-        .title-container {
-            position: absolute;
-            bottom: 80px;
-            padding: 0 30%;
-
-            .title-image {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                opacity: 0;
-                animation: slideInFromTop 2s ease-in-out forwards;
-            }
-
-            .title-image.loaded {
-                opacity: 1;
+            .vj-cta-button {
+                border-radius: 8px;
             }
         }
     }
 
-    @media (max-width: 768px) {
+    @media (prefers-reduced-motion: reduce) {
+        .vj-cta .vj-cta-button {
+            transition: none;
+            animation: none;
 
-        .title-container {
-            padding: 0 !important;
-        }
-        .video-mobile {
-            display: block;
-            max-height: 450px;
-        }
+            &::after {
+                animation: none;
+                display: none;
+            }
 
-        .video-desktop {
-            display: none;
-        }
-    }
-
-    @media (min-width: 769px) {
-        .video-mobile {
-            display: none;
-        }
-
-        .video-desktop {
-            display: block;
-            max-height: 850px;
+            &:hover,
+            &:focus-visible {
+                transform: none;
+            }
         }
     }
 }
