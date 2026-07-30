@@ -14,52 +14,81 @@ $vj-nav-height-fallback: 76px;
     .vj-hero {
         position: relative;
         width: 100%;
-        // Match the art's own ratio so it fills the hero edge to edge: no letterbox
-        // bars, and nothing cropped.
-        aspect-ratio: 2048 / 1024;
-        // Never taller than the space under the navbar, so the whole banner and the
-        // floating CTA are on screen without scrolling. When this cap kicks in (short,
-        // wide viewports) the art crops slightly top and bottom rather than showing bars.
-        max-height: calc(100vh - var(--vj-nav-h, #{$vj-nav-height-fallback}));
-        max-height: calc(100dvh - var(--vj-nav-h, #{$vj-nav-height-fallback}));
+        // Whichever is smaller: the space under the navbar, or the height the art needs
+        // at full width. So the banner never gets taller than the viewport, and never
+        // taller than the art itself (which would leave dead space above and below).
+        height: min(
+            calc(100dvh - var(--vj-nav-h, #{$vj-nav-height-fallback})),
+            50vw
+        );
+        display: flex;
         overflow: hidden;
         background: linear-gradient(180deg, $vj-fill-top 0%, $vj-fill-mid 45%, $vj-fill-bottom 100%);
     }
 
-    // aspect-ratio has been supported since Safari 15 / Chrome 88; this keeps the hero
-    // from collapsing to zero height on anything older.
-    @supports not (aspect-ratio: 2 / 1) {
+    // min() with dvh is broadly supported; this keeps older engines from collapsing.
+    @supports not (height: min(1px, 1vw)) {
         .vj-hero {
             height: 50vw;
         }
     }
 
+    // Holds the art at its true ratio and shrinks to fit whichever axis runs out first,
+    // so the artwork is always whole — nothing is ever cropped.
+    .vj-frame {
+        position: relative;
+        margin: auto; // centres the frame on both axes
+        aspect-ratio: 2048 / 1024;
+        max-width: 100%;
+        max-height: 100%;
+        // Needed for max-height to actually constrain a flex item's aspect ratio.
+        min-width: 0;
+        min-height: 0;
+    }
+
     .vj-art {
-        position: absolute;
-        inset: 0;
         display: block;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        object-position: center;
+        // The frame already matches the art's ratio, so nothing is cropped here.
+        object-fit: contain;
     }
 
-    // The artwork's own info pill (website + phone) sits at x 27%–58%, y 88.5%–94%.
-    // That band is the only part of the lower art that isn't type, so the CTA takes
-    // its place: the button reads as replacing the pill instead of colliding with it.
-    // Nothing is lost — the URL is the site you are already on and the phone number
-    // is in the navbar.
+    // When the viewport is not 2:1 there is leftover space beside or above the frame.
+    // A blurred, dimmed copy of the art fills it, which reads as depth rather than as
+    // empty coloured bars.
+    .vj-backdrop {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        // Scaled up so the blur's soft edges never reveal the hero's own background.
+        transform: scale(1.12);
+        filter: blur(30px) saturate(1.15) brightness(0.72);
+        pointer-events: none;
+        user-select: none;
+    }
+
+    // Centred in the frame, always — so it stays centred no matter how the frame is
+    // sized. Percentages are relative to the frame, so the button holds its position on
+    // the art at every viewport size.
+    //
+    // It sits over the "VIAJA · CANTA · APRENDE · TRANSFÓRMATE" tagline (y 82%–86% of
+    // the art) and clears the website/phone pill below it (y 88.5%–94%), so that contact
+    // information stays readable.
     .vj-cta {
         position: absolute;
-        // Slightly larger than the pill on every side so it covers it completely.
-        bottom: 5.5%;
-        left: 42.5%; // horizontal centre of the pill, not of the hero
+        bottom: 12.5%; // clears the pill band beneath
+        left: 50%;
         transform: translateX(-50%);
-        width: 34%;
+        // Wide enough that a centred button still fully covers the tagline, which spans
+        // x 30%–56% of the art — centred on 43%, not on 50%. Deliberately no px
+        // max-width: a cap would bind on wide screens and let the tagline poke out.
+        width: 47%;
         height: 6.5%;
-        min-width: min(280px, 78%);
+        min-width: min(280px, 82%);
         min-height: 30px;
-        max-width: 620px;
         z-index: 2;
         display: flex;
         justify-content: center;
@@ -176,17 +205,12 @@ $vj-nav-height-fallback: 76px;
         }
     }
 
-    // Narrow screens: the hero is only ~half the viewport width tall, so a legible
-    // button is proportionally much taller than the pill it sits over. Drop it to the
-    // bottom edge to keep as much artwork uncovered as possible.
+    // Narrow screens: the frame is only ~half the viewport width tall, so a legible
+    // button is proportionally much taller than the band it sits over and will reach
+    // further up the art. Nothing to do but keep the corners tighter at this size.
     @media (max-width: 767px) {
-        .vj-cta {
-            bottom: 4%;
-            left: 50%; // recentre: at this size the button is wider than the pill anyway
-
-            .vj-cta-button {
-                border-radius: 8px;
-            }
+        .vj-cta .vj-cta-button {
+            border-radius: 8px;
         }
     }
 

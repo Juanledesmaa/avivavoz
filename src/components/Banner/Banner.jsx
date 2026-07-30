@@ -42,24 +42,30 @@ const Banner = () => {
 
   return (
     <div className="banner">
-      {/* The hero takes the art's own aspect ratio, so the art covers it fully with no
-          bars, and it is capped to the viewport so the floating CTA is always on screen. */}
+      {/* .vj-frame keeps the art's 2:1 ratio and fits inside the available space, so the
+          whole banner is always visible and never cropped. When the viewport is not 2:1
+          the leftover is filled by a blurred copy of the same art rather than flat bars,
+          and the CTA is centred inside the frame. */}
       <section className="vj-hero">
-        <img
-          src={heroArt}
-          className="vj-art"
-          alt="A Viva Voz El Coaching presenta The Vocal Journey: Broadway, New York y Pennsylvania, del 8 al 14 de octubre de 2027. Viaja, canta, aprende, transfórmate. Con Omayra Martínez, profesora de canto, y Yashira Guidini, cantante."
-        />
+        <img src={heroArt} className="vj-backdrop" alt="" aria-hidden="true" />
 
-        <div className="vj-cta">
-          <Button
-            variant="primary"
-            className="vj-cta-button"
-            onClick={() => setShowModal(true)}
-          >
-            <span className="vj-cta-label">Solicitar información</span>
-            <FontAwesomeIcon icon={faArrowRight} className="vj-cta-arrow" />
-          </Button>
+        <div className="vj-frame">
+          <img
+            src={heroArt}
+            className="vj-art"
+            alt="A Viva Voz El Coaching presenta The Vocal Journey: Broadway, New York y Pennsylvania, del 8 al 14 de octubre de 2027. Viaja, canta, aprende, transfórmate. Con Omayra Martínez, profesora de canto, y Yashira Guidini, cantante."
+          />
+
+          <div className="vj-cta">
+            <Button
+              variant="primary"
+              className="vj-cta-button"
+              onClick={() => setShowModal(true)}
+            >
+              <span className="vj-cta-label">Solicitar información</span>
+              <FontAwesomeIcon icon={faArrowRight} className="vj-cta-arrow" />
+            </Button>
+          </div>
         </div>
       </section>
 

@@ -42,10 +42,12 @@ Adding a page means: create the component folder, add a `<Route>` in `App.jsx`, 
 
 `Banner` is sized so the whole banner and its CTA are always on screen without scrolling:
 
-- `.vj-hero` takes `aspect-ratio: 2048 / 1024` — the art's own ratio — so the image covers it edge to edge with no letterbox bars and nothing cropped.
-- `max-height: calc(100dvh - var(--vj-nav-h))` caps it to the space under the sticky navbar. On the rare short-and-wide viewport where that cap binds, the art crops slightly top and bottom instead of showing bars.
+- `.vj-hero` is `height: min(calc(100dvh - var(--vj-nav-h)), 50vw)` — never taller than the space under the navbar, and never taller than the art needs at full width.
+- `.vj-frame` inside it carries `aspect-ratio: 2048 / 1024` with `max-width/max-height: 100%` and `margin: auto`. It therefore shrinks to fit whichever axis runs out first and stays centred, so **the artwork is always whole — never cropped**.
+- A single fixed-ratio image cannot fill a viewport of a different ratio without either cropping or leaving empty space. Whole-art visibility won, so the leftover is filled by `.vj-backdrop` — the same image, `cover`, blurred and dimmed, scaled 1.12 so the blur's soft edge never exposes the hero background. That reads as depth instead of flat bars.
 - `--vj-nav-h` is **measured at runtime** by `Banner.jsx` with a `ResizeObserver` on `.navigationBar`, not hardcoded. The navbar is 76px on desktop and taller on mobile (the phone button wraps), and it reflows with zoom and font size — an assumed constant put the CTA below the fold.
-- The CTA is absolutely positioned over the slot occupied by the artwork's own website/phone pill (**x 27–58%, y 88.5–94%** of the art). That band is the only part of the lower art that isn't type, and covering it loses nothing: the URL is the site you're on and the phone number is in the navbar. The `left: 42.5%` offset is the pill's centre, not the hero's.
+- The CTA is **always horizontally centred** in the frame (`left: 50%`). Its `width: 47%` is what lets a centred button fully cover the `VIAJA · CANTA · APRENDE · TRANSFÓRMATE` tagline, which spans x 30–56% of the art — i.e. centred on 43%, not 50%. There is deliberately **no px `max-width`**: a cap binds on wide screens and lets the tagline poke out past the button.
+- `bottom: 12.5%` places it over the tagline (y 82–86%) while clearing the website/phone pill below (y 88.5–94%), so contact details stay readable. All these percentages are relative to the frame, so the button holds its position on the art at every size.
 - Contrast: teal and the red art sit at similar luminance, so hue alone didn't separate the button. The white keyline does the work; the gradient, glow pulse, and shine sweep signal that it's pressable. All motion is disabled under `prefers-reduced-motion`.
 
 The old autoplay video hero is gone. `viva_voz_mobile.mp4` and `viva_voz_desktop.mp4` are deliberately kept in `src/img/` but are no longer referenced, in case the animated hero is wanted back after the event.
