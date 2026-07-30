@@ -54,6 +54,8 @@ Submissions also appear under **Forms** in the Netlify dashboard. The free tier 
 
 A real submission cannot be tested with `npm start` — use a deploy preview or `netlify dev`. See [CLAUDE.md](CLAUDE.md) for how the hidden static form in `public/index.html` ties into this.
 
+**If the first submission arrives and later ones seem to disappear**, they are almost certainly in the **Spam submissions** tab. Netlify's Akismet filter flags submissions containing test data or repeating from the same IP, and spam-flagged submissions send no notification. Test with realistic data and check that tab before assuming the form is broken.
+
 ## Project layout
 
 ```

@@ -77,6 +77,19 @@ The free tier allows 100 submissions/month; past that, submissions are blocked r
 
 Local `npm start` cannot complete a real submission — `POST /` isn't handled by the CRA dev server. Test against a deploy preview or `netlify dev`.
 
+#### "It worked once, now nothing arrives"
+
+Netlify runs every submission through Akismet. Per Netlify's troubleshooting docs, submissions are flagged as spam when they **contain test data or come repeatedly from the same IP** — exactly what testing looks like. Flagged submissions:
+
+- go to the **Spam submissions** tab, not Verified, and
+- send **no notification**, because notifications only fire for *verified* submissions.
+
+So the symptom is "the first one arrived and the rest vanished", with the POST still returning `200` and Netlify's "Thank you!" page. Nothing is broken and no code change helps.
+
+What to do: check **Forms → `vocal-journey-2027` → Spam submissions**, mark the good ones as verified, and test with realistic-looking data rather than `test`/`asdf`, spacing attempts out or using a different network. A submission returning Netlify's "Thank you!" HTML means it *was* accepted — that response is not an error.
+
+Note the client always shows success on a `200`, because Netlify returns `200` for spam-flagged submissions too. There is no response field that distinguishes them.
+
 ### Unused components
 
 `Gallery/`, `Modal/` and `MarqueeBanner/` are not imported anywhere. `Gallery` still points at picsum placeholder URLs; `Modal` is a leftover ATH Móvil ticket-reservation confirmation. Treat all three as dead code — they don't reflect current requirements.
