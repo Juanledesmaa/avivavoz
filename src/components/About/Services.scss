@@ -45,17 +45,34 @@
             margin-top: 40px;
         }
         
+        // The circular frame lives on the container so it can crop the photo, and it is
+        // larger than the old 200px so the face reads at a glance.
         .icon-container {
+            position: relative;
+            width: clamp(220px, 24vw, 300px);
+            aspect-ratio: 1;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 50%;
+            background: linear-gradient(to right, $secondary-color 0%, #4E6E96 100%);
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, .05);
+
+            // The photo is a 3:2 studio shot framed head-to-waist, so simply fitting it
+            // to a square leaves the face small and distant. These values crop it to a
+            // headshot instead.
+            //
+            // The photo's head-and-shoulders centre sits at 49% across and 28% down.
+            // Scaling to 195.3% of the frame height shows ~51% of the photo's height,
+            // and the offsets place that centre in the middle of the circle — framing
+            // the region x 32%-66%, y 2%-54%. Keeping `width: auto` means the aspect
+            // ratio can never be stretched, whatever the frame size.
             img {
-                margin-bottom: 20px;
-                width: 200px;
-                height: 200px;
-                border-radius: 50%;
-                background: linear-gradient(to right, $secondary-color 0%, #4E6E96 100%);
-                box-shadow: 10px 10px 10px rgba(0,0,0,.05);
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                position: absolute;
+                top: -4.7%;
+                left: -93.6%;
+                width: auto;
+                max-width: none;
+                height: 195.3%;
             }
         }
     }
