@@ -12,15 +12,17 @@
 
     // The form wraps .modal-body and .modal-footer, which makes it the flex child of
     // .modal-content instead of them. A plain block element there breaks Bootstrap's
-    // scrollable chain: .modal-body never gets a bounded height, so it cannot scroll,
-    // and .modal-content's `overflow: hidden` then clips the overflow outright — the
-    // footer with the submit button included. Re-establish the chain through the form.
+    // scrollable chain — .modal-content's `overflow: hidden` would clip the footer
+    // (submit button included) out of reach. The form is therefore the scroll
+    // container at every size: the footer flows after the last field and only appears
+    // when the user scrolls to the end, rather than pinning to the modal's bottom.
     .modal-content > form {
         display: flex;
         flex-direction: column;
         flex: 1 1 auto;
         min-height: 0;
-        overflow: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain; // don't chain the scroll to the page behind
     }
 
     .modal-header {
@@ -59,10 +61,14 @@
 
     .modal-body {
         padding: 22px 24px;
-        flex: 1 1 auto;
-        min-height: 0; // without this the body refuses to shrink below its content
-        overflow-y: auto;
-        overscroll-behavior: contain; // don't chain the scroll to the page behind
+        flex: 0 0 auto;
+        // !important because Bootstrap's own `.modal-dialog-scrollable .modal-body
+        // { overflow-y: auto }` wins the cascade otherwise. If the body stays a
+        // scroll container, its overscroll containment swallows wheel and touch
+        // scrolls instead of chaining them to the form — the form then only scrolls
+        // programmatically, never by gesture.
+        overflow: visible !important;
+        overscroll-behavior: auto;
     }
 
     .modal-footer {
@@ -327,26 +333,6 @@
 
         .modal-header .modal-title h2 {
             font-size: 22px !important;
-        }
-
-        // On phones the footer scrolls WITH the form instead of pinning to the
-        // bottom: the form becomes the scroll container and the body drops its own
-        // scrolling, so Cancelar / Enviar sit after the last field and only appear
-        // when the user reaches the end. Desktop keeps the pinned footer.
-        .modal-content > form {
-            overflow-y: auto;
-            overscroll-behavior: contain;
-        }
-
-        .modal-body {
-            flex: 0 0 auto;
-            // !important because Bootstrap's own `.modal-dialog-scrollable .modal-body
-            // { overflow-y: auto }` wins the cascade otherwise. If the body stays a
-            // scroll container here, its `overscroll-behavior: contain` swallows wheel
-            // and touch scrolls instead of chaining them to the form — the form then
-            // only scrolls programmatically, never by gesture.
-            overflow: visible !important;
-            overscroll-behavior: auto;
         }
 
         .modal-footer {
