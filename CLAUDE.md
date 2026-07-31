@@ -47,7 +47,7 @@ Adding a page means: create the component folder, add a `<Route>` in `App.jsx`, 
 `HomePage` loads `data.json` into `useState` and renders, in order:
 
 1. `Banner` — the "The Vocal Journey" event hero: a single piece of artwork (`vocal_journey_2027.jpeg`, 2048×1024) plus the CTA overlaid on it at 768px and up. See "The hero" below
-2. `ProgramPDF` — the "SOBRE NOSOTROS" copy block, plus the same CTA relocated to the top of this section below 768px. Despite the name it no longer renders a PDF; its `.pdf-container` is empty
+2. `ProgramPDF` — the "SOBRE NOSOTROS" title, then the old banner promo video autoplaying in a `.video-card` (white rounded card ≥768px, edge-to-edge full bleed below with a `85vh` + `cover` cap), then the copy block. Also hosts the CTA relocated to the top of this section below 768px. Despite the name it no longer renders a PDF; its `.pdf-container` is empty
 3. `Introduction` — "SERVICIOS" and "COACHING KIDS" sections, and a download button for `politicas_a_viva_voz_final_compressed.pdf`
 4. `Services` — the coach bio card; the only component driven by `data.json`
 5. `IntroductionV2` — group and individual sessions, vocal technique, download button for `Temas_Talleres.pdf`
@@ -74,7 +74,7 @@ Adding a page means: create the component folder, add a `<Route>` in `App.jsx`, 
 
 Below 768px the art is only ~half the viewport width tall, so an overlaid button would cover the tagline and contact pill. Because the CTA lives in two components, **modal state is owned by `HomePage`**, which renders `RequestInfoModal` once and passes the same `onRequestInfo` callback to both — `Banner` is presentational. The `767.98px` value appears in both `banner.scss` and `ProgramPDF.scss` and must match, or the button appears twice or not at all. The relocated button defines its own `riPulse`/`riShine` keyframes rather than reusing the banner's, so it doesn't depend on another component's stylesheet being loaded.
 
-The old autoplay video hero is gone. `viva_voz_mobile.mp4` and `viva_voz_desktop.mp4` are deliberately kept in `src/img/` but are no longer referenced, in case the animated hero is wanted back after the event.
+The old autoplay video hero is gone from the banner. `viva_voz_mobile.mp4` and `viva_voz_desktop.mp4` now live inside the "Sobre nosotros" section instead: `ProgramPDF` plays them in a card using the same dual-source swap the old hero used (landscape file ≥768px, portrait below — the breakpoint media queries in `ProgramPDF.scss` and the two `<video>` elements in the JSX must stay in sync).
 
 `ConsejosPage` is a standalone long-form document ("Fortaleciendo el taller A Viva Voz Coaching Kids en CASA") — a hero with a PDF download button, then hardcoded JSX sections inside a `Parallax`. Its content lives in the JSX, not in `data.json`.
 
@@ -140,7 +140,7 @@ Each component folder holds its own `.scss`, imported at the top of its `.jsx` a
 
 ### Assets
 
-`src/img/` holds logos (`avivavoz_logo_white.png`, `avivavoz_color_logo.png`), parallax backgrounds (`parallax_red.jpg`, `parallax_yellow.jpg`), the coach photo, the two banner videos, and the three downloadable PDFs. Fonts in `src/fonts/`. Favicons and manifest in `public/`.
+`src/img/` holds logos (`avivavoz_logo_white.png`, `avivavoz_color_logo.png`), parallax backgrounds (`parallax_red.jpg`, `parallax_yellow.jpg`), the coach photo, the two "Sobre nosotros" promo videos, and the three downloadable PDFs. Fonts in `src/fonts/`. Favicons and manifest in `public/`.
 
 ## Development Guidelines
 

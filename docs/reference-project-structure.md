@@ -77,7 +77,7 @@ Each component lives in its own folder holding `ComponentName.jsx` and `Componen
 | `Temas_Talleres.pdf` | `IntroductionV2` download button |
 | `Consejos-para-seguimiento-en-casa.pdf` | `ConsejosPage` download button |
 | `jose_profile.jpeg` | Nothing (replaced by `omayra_profile.jpeg`) |
-| `viva_voz_mobile.mp4`, `viva_voz_desktop.mp4` | Nothing (the old video hero, kept deliberately) |
+| `viva_voz_mobile.mp4`, `viva_voz_desktop.mp4` | `ProgramPDF`, the "Sobre nosotros" video card (portrait file below 768px, landscape from 768px up) |
 | `overlay-bg.png` | Nothing |
 
 Images and PDFs must be `import`ed in a component to be bundled. A bare path string in `data.json` will not resolve. See the `imageMap` pattern in [reference-components.md](reference-components.md#services).

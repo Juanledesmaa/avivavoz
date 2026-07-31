@@ -87,6 +87,20 @@ Most text is hardcoded in JSX, not in a data file. This is the first thing to ge
 
 **Verification:** at 1920x1080 and at 1920x812 the whole image is visible with nothing cut off, and the button is on screen without scrolling.
 
+## How to replace the "Sobre nosotros" promo video
+
+The section plays two files, swapped by viewport width. Both are imported in `src/components/ProgramPDF/ProgramPDF.jsx`:
+
+| File | Shown |
+|---|---|
+| `viva_voz_desktop.mp4` (16:9) | 768px and up, inside the white card |
+| `viva_voz_mobile.mp4` (portrait 9:16) | below 768px, full bleed |
+
+1. Put the new file(s) in `src/img/` and update the `import` lines in `ProgramPDF.jsx`.
+2. If the new mobile file is not 9:16, re-check the `max-height: 85vh` cap in `ProgramPDF.scss` — it is sized so a 9:16 file at full width fits uncropped on a typical portrait phone.
+
+**Verification:** at a desktop width the video plays inside the card; at 375px it runs edge to edge with the full frame visible and no horizontal scroll. Autoplay requires the `muted` attribute — browsers block unmuted autoplay, so never remove it.
+
 ## How to swap a downloadable PDF
 
 The three PDFs are imported directly, so replacing one is a two step change.

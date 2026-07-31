@@ -53,7 +53,11 @@
             margin-top: 0;
 
             .video-mobile {
-                max-height: 70vh;
+                // 85vh instead of 70vh: at a typical portrait phone (375x812) the
+                // 9:16 file needs ~667px at full width, and 85vh (~690px) fits that
+                // whole frame - so nothing is cropped there. cover still guards the
+                // short-viewport cases.
+                max-height: 85vh;
                 object-fit: cover;
             }
         }

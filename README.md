@@ -49,7 +49,7 @@ Opens [http://localhost:3000](http://localhost:3000) with hot reload.
 
 | Route | Contents |
 |---|---|
-| `/` | "The Vocal Journey" event hero with a registration CTA, about, services, "Coaching Kids", coach bio, contact info, downloadable policy and workshop PDFs |
+| `/` | "The Vocal Journey" event hero with a registration CTA, about section with an autoplaying promo video, services, "Coaching Kids", coach bio, contact info, downloadable policy and workshop PDFs |
 | `/consejos` | "Consejos para seguimiento en casa" — long-form guide for parents, with PDF download |
 
 ## Deployment
@@ -79,7 +79,7 @@ src/
   components/    one folder per component (ComponentName.jsx + ComponentName.scss)
   data/          data.json — copy for the coach bio card
   styles/        _colors, _fonts, _imports, index.scss, App.scss
-  img/           logos, parallax backgrounds, banner videos, downloadable PDFs
+  img/           logos, parallax backgrounds, promo videos, downloadable PDFs
   fonts/         Brutal Type family
 ```
 
