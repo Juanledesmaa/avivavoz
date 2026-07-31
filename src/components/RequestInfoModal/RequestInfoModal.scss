@@ -88,7 +88,10 @@
             border-color: $primary-color;
             display: inline-flex;
             align-items: center;
-            text-align: center;
+            // The button is a flex container, so text-align does nothing to its
+            // label — centring the content needs justify-content. Matters on phones,
+            // where the buttons stretch full width.
+            justify-content: center;
 
             &:hover:not(:disabled),
             &:focus-visible:not(:disabled) {
