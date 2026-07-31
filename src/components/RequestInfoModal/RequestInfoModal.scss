@@ -82,6 +82,7 @@
             border-color: $primary-color;
             display: inline-flex;
             align-items: center;
+            text-align: center;
 
             &:hover:not(:disabled),
             &:focus-visible:not(:disabled) {
@@ -326,6 +327,26 @@
 
         .modal-header .modal-title h2 {
             font-size: 22px !important;
+        }
+
+        // On phones the footer scrolls WITH the form instead of pinning to the
+        // bottom: the form becomes the scroll container and the body drops its own
+        // scrolling, so Cancelar / Enviar sit after the last field and only appear
+        // when the user reaches the end. Desktop keeps the pinned footer.
+        .modal-content > form {
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        .modal-body {
+            flex: 0 0 auto;
+            // !important because Bootstrap's own `.modal-dialog-scrollable .modal-body
+            // { overflow-y: auto }` wins the cascade otherwise. If the body stays a
+            // scroll container here, its `overscroll-behavior: contain` swallows wheel
+            // and touch scrolls instead of chaining them to the form — the form then
+            // only scrolls programmatically, never by gesture.
+            overflow: visible !important;
+            overscroll-behavior: auto;
         }
 
         .modal-footer {
