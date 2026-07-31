@@ -25,7 +25,7 @@ There is no 404 route. An unknown path renders the shell with an empty `<main>`.
 | `NavigationBar` | none | Sticky header, logo, phone link, 2 nav links |
 | `HomePage` | none | The 6 homepage sections plus the shared modal |
 | `Banner` | `onRequestInfo` | Event hero art, plus the overlaid CTA at 768px and up |
-| `ProgramPDF` | `onRequestInfo` | "SOBRE NOSOTROS" copy, plus the relocated CTA below 768px |
+| `ProgramPDF` | `onRequestInfo` | "SOBRE NOSOTROS" title, autoplaying promo video card, copy, plus the relocated CTA below 768px |
 | `Introduction` | none | "SERVICIOS" and "COACHING KIDS", policies PDF download |
 | `Services` | `data` | The coach bio card |
 | `IntroductionV2` | none | Group and individual sessions, workshops PDF download |
@@ -78,7 +78,9 @@ Runs one effect, `useNavHeightVar`, which measures `.navigationBar` with a `Resi
 |---|---|---|---|
 | `onRequestInfo` | function | yes | Called on CTA click. Same handler as `Banner`. |
 
-Despite the name it **does not render a PDF**. Its `.pdf-container` is empty. It renders the "SOBRE NOSOTROS" copy block, and at the top of that section a `.request-info-cta` button that is only visible below 768px.
+Despite the name it **does not render a PDF**. Its `.pdf-container` is empty. It renders, in order: the `.request-info-cta` button (only visible below 768px), the "SOBRE NOSOTROS" title, a `.video-card` playing the old banner promo video, then the copy block.
+
+The video card uses the old hero's dual-source pattern — two `<video>` elements (`autoPlay loop muted playsInline`), CSS-toggled: `viva_voz_desktop.mp4` (16:9) from 768px up inside a white rounded card capped at 1020px, `viva_voz_mobile.mp4` (portrait) below 768px with no card chrome, breaking out of the Bootstrap container to full viewport width, capped at `85vh` with `object-fit: cover`. The card sits **outside** the `col-md-8` text column on purpose, so it can be wider than the text.
 
 ### Services
 
