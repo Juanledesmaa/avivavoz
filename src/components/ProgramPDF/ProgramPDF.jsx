@@ -1,5 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import videoDesktop from '../../img/viva_voz_desktop.mp4';
+import videoMobile from '../../img/viva_voz_mobile.mp4';
 import './ProgramPDF.scss';
 
 export default function ProgramPDF({ onRequestInfo }) {
@@ -19,6 +21,35 @@ export default function ProgramPDF({ onRequestInfo }) {
 
           <div className='col-md-8 section-title text-center mx-auto'>
             <h2>SOBRE NOSOTROS</h2>
+          </div>
+
+          {/* Approved design "Tarjeta" (design-shotgun variant A) with feedback applied:
+              autoplaying old-banner video, white rounded card on desktop; on mobile the
+              card disappears and the video runs edge to edge. Same dual-source pattern
+              the old hero used — landscape file from 768px up, portrait file below.
+              Outside the col-md-8 column on purpose, so it can be wider than the text. */}
+          <div className="video-card">
+            <video
+              src={videoMobile}
+              className="video-mobile"
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-label="Video promocional de A Viva Voz Coaching"
+            />
+            <video
+              src={videoDesktop}
+              className="video-desktop"
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-label="Video promocional de A Viva Voz Coaching"
+            />
+          </div>
+
+          <div className='col-md-8 section-title text-center mx-auto'>
             <h3>
             A Viva Voz Coaching es una corporación registrada para educar en el uso y manejo de la voz, ya sea para el canto, el habla o la oratoria. Es un método de enseñanza ofrecido a través de talleres especializados, diseñados por la profesora de canto Omayra Martínez, con el propósito de brindar herramientas y desarrollar destrezas dentro de este arte.<br/><br/>
             Nuestra empresa combina la excelencia artística con una metodología inclusiva, pedagógica y adaptada a cada etapa del desarrollo vocal.
