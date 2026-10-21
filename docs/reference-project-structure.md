@@ -53,7 +53,6 @@ src/
   data/data.json         Content data (see caveat below)
   styles/                Shared SCSS: _colors, _fonts, _imports, index, App
   img/                   Images, videos, and the downloadable PDFs
-  fonts/                 Brutal Type family
 build/                   Build output, gitignored
 ```
 
@@ -84,20 +83,7 @@ Images and PDFs must be `import`ed in a component to be bundled. A bare path str
 
 ## Fonts
 
-`src/fonts/` holds the Brutal Type family in four formats each (`eot`, `ttf`, `woff`, `woff2`), declared in `src/styles/_fonts.scss` as a single family named `Brutal Type` across eight weights:
-
-| Weight | File |
-|---|---|
-| 100 | `BrutalType-Thin` |
-| 200 | `BrutalType-ExtraLight` |
-| 300 | `BrutalType-Light` |
-| 400 (`normal`) | `BrutalType` |
-| 500 | `BrutalType-Medium` |
-| 700 (`bold`) | `BrutalType-Bold` |
-| 800 | `BrutalType-ExtraBold` |
-| 900 | `BrutalType-Black` |
-
-`src/styles/index.scss` sets `Brutal Type` as the family on `body`, `html`, and headings. Google Fonts (Open Sans, Lato, Raleway) are also imported in `_imports.scss` but nothing sets them as a family, so they download without being used.
+The site font is **Work Sans** (SIL Open Font License), loaded from Google Fonts in `src/styles/_imports.scss` as a variable font covering weights 100–900. `src/styles/index.scss` sets it on `body`, `html`, and headings. It replaced Brutal Type, a commercial font that was removed after a licensing notice. Open Sans, Lato and Raleway are also imported but nothing sets them as a family.
 
 ## Design tokens
 

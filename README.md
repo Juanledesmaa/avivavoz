@@ -24,7 +24,7 @@ That last one is not optional reading if you plan to touch the banner or the for
 - React 18 + React Router 6 (client-side routing)
 - React Bootstrap 5 for layout and components
 - SCSS with shared variables in `src/styles/` and per-component stylesheets
-- Custom "Brutal Type" webfont family
+- Work Sans (Google Fonts, OFL) as the site font
 - Bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
 ## Getting started
@@ -80,7 +80,6 @@ src/
   data/          data.json — copy for the coach bio card
   styles/        _colors, _fonts, _imports, index.scss, App.scss
   img/           logos, parallax backgrounds, promo videos, downloadable PDFs
-  fonts/         Brutal Type family
 ```
 
 See [CLAUDE.md](CLAUDE.md) for a detailed architecture breakdown and known rough edges.

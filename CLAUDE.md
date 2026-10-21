@@ -131,8 +131,7 @@ No global state management, no context, no data fetching.
 Shared SCSS in `src/styles/`:
 
 - `_colors.scss` — `$primary-color: #00B3B2` (teal), `$secondary-color: #F9B320` (gold), `$tertiary-color: #EF3E3A`, plus neutrals and `$whatsapp-green`
-- `_fonts.scss` — "Brutal Type" family, weights 100–900, in eot/ttf/woff/woff2
-- `_imports.scss` — Google Fonts (Open Sans, Lato, Raleway), `react-image-gallery` styles, `_fonts`, full Bootstrap, `_colors`
+- `_imports.scss` — Google Fonts (Work Sans 100–900, the site font; plus unused Open Sans, Lato, Raleway), `react-image-gallery` styles, full Bootstrap, `_colors`. Brutal Type was removed in Oct 2026 after a licensing notice — do not reintroduce unlicensed commercial fonts
 - `index.scss` — global element styles (base `h2`–`h5`, `p`, `a`, list resets, `body` background set to `$primary-color`)
 - `App.scss` — app shell; `.App` sets `overflow-x: hidden`, `.main-content` a `min-height`
 
@@ -140,7 +139,7 @@ Each component folder holds its own `.scss`, imported at the top of its `.jsx` a
 
 ### Assets
 
-`src/img/` holds logos (`avivavoz_logo_white.png`, `avivavoz_color_logo.png`), parallax backgrounds (`parallax_red.jpg`, `parallax_yellow.jpg`), the coach photo, the two "Sobre nosotros" promo videos, and the three downloadable PDFs. Fonts in `src/fonts/`. Favicons and manifest in `public/`.
+`src/img/` holds logos (`avivavoz_logo_white.png`, `avivavoz_color_logo.png`), parallax backgrounds (`parallax_red.jpg`, `parallax_yellow.jpg`), the coach photo, the two "Sobre nosotros" promo videos, and the three downloadable PDFs. Favicons and manifest in `public/`.
 
 ## Development Guidelines
 
