@@ -185,3 +185,4 @@ Key routing rules:
 - Save progress → invoke /context-save
 - Resume context → invoke /context-restore
 - Author a backlog-ready spec/issue → invoke /spec
+- Fonts, images, PDFs, licensing or copyright notices → invoke /license-audit
